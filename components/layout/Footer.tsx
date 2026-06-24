@@ -10,7 +10,7 @@ export default function Footer() {
               <img src="/logo.jpg" alt="Hanfi's Collection" style={{ height: 44, width: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)' }} />
             </div>
             <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', lineHeight: 1.7, maxWidth: 280, marginBottom: 24 }}>
-              Mumbai's most trusted mobile store. Premium phones, certified refurbished devices, and unbeatable prices since 2010.
+              Marathwada's most trusted mobile store. Premium phones, certified refurbished devices, and unbeatable prices since 2010.
             </p>
             <div className="social-row">
               {['I', 'F', 'Y', 'W'].map((s, i) => <div key={i} className="social-ic">{s}</div>)}
@@ -30,7 +30,7 @@ export default function Footer() {
           </div>
           <div>
             <div className="footer-col-title">Contact</div>
-            {[['📞', '+91 98765 43210'], ['💬', 'WhatsApp: +91 98765 43210'], ['📧', 'hello@hanfiscollection.com'], ['📍', 'Multiple locations, Mumbai'], ['🕐', '10 AM – 9 PM, All days']].map(([icon, text]) => (
+            {[['📞', '+91 98765 43210'], ['💬', 'WhatsApp: +91 98765 43210'], ['📧', 'hello@hanfiscollection.com'], ['📍', 'Multiple locations, Marathwada'], ['🕐', '10 AM – 9 PM, All days']].map(([icon, text]) => (
               <div key={text} style={{ display: 'flex', gap: 10, marginBottom: 10, fontSize: 13, color: 'rgba(255,255,255,0.45)' }}>
                 <span>{icon}</span><span>{text}</span>
               </div>
@@ -38,7 +38,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <div className="footer-copy">© 2025 Hanfi's Collection. All rights reserved. Built with ❤️ in Mumbai.</div>
+          <div className="footer-copy">© 2025 Hanfi's Collection. All rights reserved. Built with ❤️ in Marathwada.</div>
           <div className="pay-badges">
             {['UPI', 'Visa', 'Mastercard', 'Bajaj Finance', 'Net Banking', 'Cash on Delivery'].map(p => (
               <div key={p} className="pay-badge">{p}</div>

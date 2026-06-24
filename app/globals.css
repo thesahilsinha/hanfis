@@ -366,3 +366,38 @@ button { font-family: inherit; }
   .branch-actions { flex-direction: column; }
   .branch-btn { width: 100%; }
 }
+
+/* ── GALLERY ── */
+.gallery-section { padding: 80px 0; background: #0a0a0a; }
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+.gallery-item { aspect-ratio: 1; overflow: hidden; cursor: pointer; position: 'relative'; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.35s; display: block; }
+.gallery-item:hover img { transform: scale(1.06); }
+.gallery-item-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0); transition: background 0.25s; display: flex; align-items: flex-end; padding: 12px; }
+.gallery-item:hover .gallery-item-overlay { background: rgba(0,0,0,0.45); }
+.gallery-caption { color: #fff; font-size: 13px; font-weight: 600; opacity: 0; transition: opacity 0.25s; }
+.gallery-item:hover .gallery-caption { opacity: 1; }
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.lightbox-img { max-width: 700px; width: 100%; border-radius: 16px; max-height: 80vh; object-fit: contain; }
+.lightbox-close { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.1); border: none; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #fff; font-size: 20px; }
+
+@media (max-width: 768px) {
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 3px; }
+  .gallery-section { padding: 48px 0; }
+}
+@media (max-width: 480px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── BLOG ── */
+.blog-content h2 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 800; margin: 32px 0 12px; color: #0a0a0a; }
+.blog-content h3 { font-size: 18px; font-weight: 700; margin: 24px 0 10px; color: #0a0a0a; }
+.blog-content p { margin-bottom: 18px; }
+.blog-content ul, .blog-content ol { padding-left: 24px; margin-bottom: 18px; }
+.blog-content li { margin-bottom: 6px; }
+.blog-content strong { font-weight: 700; color: #0a0a0a; }
+.blog-content a { color: #c8102e; text-decoration: underline; }
+
+@media (max-width: 768px) {
+  .blog-grid-2 { grid-template-columns: 1fr !important; }
+}

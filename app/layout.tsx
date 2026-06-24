@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: "Hanfi's Collection — Premium Mobiles Mumbai",
-  description: 'Buy new & certified refurbished smartphones. iPhone, Samsung, OnePlus & more. No Cost EMI. Free delivery in Mumbai.',
+  title: "Hanfi's Collection — Premium Mobiles",
+  description: 'Buy new & certified refurbished smartphones. iPhone, Samsung, OnePlus & more. No Cost EMI. Free delivery.',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -37,7 +37,7 @@ export default async function BuyUsedPage() {
         ))}
       </div>
       <div style={{ marginTop: 64, background: '#f9f9f9', borderRadius: 24, padding: 48, display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24 }}>
-        {[['♻️', '30-Point Check', 'Every device tested thoroughly'], ['🛡️', '6-Month Warranty', 'Peace of mind guaranteed'], ['↩️', '7-Day Returns', 'No questions asked'], ['⚡', 'Fast Delivery', 'Same day in Mumbai']].map(([e, t, s]) => (
+        {[['♻️', '30-Point Check', 'Every device tested thoroughly'], ['🛡️', '6-Month Warranty', 'Peace of mind guaranteed'], ['↩️', '7-Day Returns', 'No questions asked'], ['⚡', 'Fast Delivery', 'Same day in Marathwada']].map(([e, t, s]) => (
           <div key={t} style={{ textAlign: 'center' }}>
             <div style={{ fontSize: 32, marginBottom: 8 }}>{e}</div>
             <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 4 }}>{t}</div>

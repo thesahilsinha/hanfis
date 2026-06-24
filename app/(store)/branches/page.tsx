@@ -10,7 +10,7 @@ export default async function BranchesPage() {
       <div style={{ textAlign: 'center', marginBottom: 56 }}>
         <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: '#c8102e', marginBottom: 8 }}>FIND US</div>
         <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: 44, fontWeight: 800, marginBottom: 12 }}>Our Branches</h1>
-        <p style={{ color: '#888', fontSize: 16 }}>Visit us at any of our locations across Mumbai</p>
+        <p style={{ color: '#888', fontSize: 16 }}>Visit us at any of our locations across Marathwada</p>
       </div>
       {!branches?.length && <p style={{ textAlign: 'center', color: '#888', fontSize: 16 }}>Branches coming soon. Call us at +91 98765 43210</p>}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 32 }}>

@@ -1,5 +1,5 @@
 export default function AnnouncementBar() {
-  const items = ['Free delivery on orders above ₹999', 'No Cost EMI via Bajaj Finance', 'Certified Refurbished Phones up to 60% off', 'Same day delivery in Mumbai', 'Sell your old phone — instant quote', '7-day easy returns', 'Official warranty on all new phones']
+  const items = ['Free delivery on orders above ₹999', 'No Cost EMI via Bajaj Finance', 'Certified Refurbished Phones up to 60% off', 'Same day delivery in Marathwada', 'Sell your old phone — instant quote', '7-day easy returns', 'Official warranty on all new phones']
   const doubled = [...items, ...items]
   return (
     <div style={{ background: '#0a0a0a', color: '#fff', padding: '10px 0', overflow: 'hidden' }}>

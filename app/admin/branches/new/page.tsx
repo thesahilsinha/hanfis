@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 
 export default function NewBranchPage() {
   const router = useRouter()
-  const [form, setForm] = useState({ name: '', address: '', city: 'Mumbai', phone: '', whatsapp: '', image_url: '', google_map_url: '', google_map_embed: '', timings: '10 AM – 9 PM' })
+  const [form, setForm] = useState({ name: '', address: '', city: 'Marathwada', phone: '', whatsapp: '', image_url: '', google_map_url: '', google_map_embed: '', timings: '10 AM – 9 PM' })
   const [loading, setLoading] = useState(false)
 
   async function save() {
