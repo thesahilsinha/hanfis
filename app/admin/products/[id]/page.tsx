@@ -5,7 +5,8 @@ import { generateSlug } from '@/lib/utils'
 
 export default function EditProductPage() {
   const router = useRouter()
-  const { id } = useParams()
+  const params = useParams()
+  const id = params.id as string
   const [form, setForm] = useState<any>(null)
   const [loading, setLoading] = useState(false)
 
@@ -17,7 +18,10 @@ export default function EditProductPage() {
 
   async function save() {
     setLoading(true)
-    await fetch(`/api/products/${id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...form, slug: generateSlug(form.name), price: parseInt(form.price), old_price: form.old_price ? parseInt(form.old_price) : null, images: form.images ? form.images.split('\n').map((s: string) => s.trim()).filter(Boolean) : [], specs: JSON.parse(form.specs || '{}') }) })
+    await fetch(`/api/products/${id}`, {
+      method: 'PUT', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...form, slug: generateSlug(form.name), price: parseInt(form.price), old_price: form.old_price ? parseInt(form.old_price) : null, images: form.images ? form.images.split('\n').map((s: string) => s.trim()).filter(Boolean) : [], specs: JSON.parse(form.specs || '{}') })
+    })
     setLoading(false)
     router.push('/admin/products')
   }
