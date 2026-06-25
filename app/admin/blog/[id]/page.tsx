@@ -1,5 +1,5 @@
-import Link from 'next/link'
 'use client'
+import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 
@@ -25,7 +25,8 @@ export default function EditBlogPost() {
       updates.published_at = publish ? new Date().toISOString() : null
     }
     await fetch(`/api/blog/${id}`, {
-      method: 'PUT', headers: { 'Content-Type': 'application/json' },
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updates)
     })
     setLoading(false)
@@ -39,7 +40,11 @@ export default function EditBlogPost() {
       <div className="page-header">
         <h1 className="page-title">Edit Post</h1>
         <div style={{ display: 'flex', gap: 12 }}>
-          {form.is_published && <Link href={`/blog/${form.slug}`} target="_blank" style={{ padding: '10px 16px', background: '#f4f4f4', borderRadius: 10, fontSize: 13, fontWeight: 600, color: '#0a0a0a', textDecoration: 'none' }}>View Live ↗</Link>}
+          {form.is_published && (
+            <Link href={`/blog/${form.slug}`} target="_blank" style={{ padding: '10px 16px', background: '#f4f4f4', borderRadius: 10, fontSize: 13, fontWeight: 600, color: '#0a0a0a', textDecoration: 'none' }}>
+              View Live ↗
+            </Link>
+          )}
           <button onClick={() => router.back()} style={{ background: 'none', border: 'none', fontSize: 14, cursor: 'pointer', color: '#888' }}>← Back</button>
         </div>
       </div>
@@ -63,7 +68,9 @@ export default function EditBlogPost() {
         <div className="form-group">
           <label className="form-label">Cover Image URL</label>
           <input className="form-input" value={form.cover_image || ''} onChange={e => setForm({ ...form, cover_image: e.target.value })} />
-          {form.cover_image && <img src={form.cover_image} alt="preview" style={{ marginTop: 10, height: 140, width: '100%', objectFit: 'cover', borderRadius: 10 }} onError={e => (e.currentTarget.style.display = 'none')} />}
+          {form.cover_image && (
+            <img src={form.cover_image} alt="preview" style={{ marginTop: 10, height: 140, width: '100%', objectFit: 'cover', borderRadius: 10 }} onError={e => (e.currentTarget.style.display = 'none')} />
+          )}
         </div>
         <div className="form-group">
           <label className="form-label">Excerpt</label>
