@@ -1,6 +1,7 @@
 import { createAdminSupabase } from '@/lib/supabase-server'
 import { formatPrice } from '@/lib/utils'
 import Link from 'next/link'
+import type { Product } from '@/types'
 
 export default async function AdminProducts() {
   const supabase = createAdminSupabase()
@@ -19,7 +20,7 @@ export default async function AdminProducts() {
               <tr>{['Product', 'Brand', 'Price', 'Stock', 'Featured', 'Badge', 'Actions'].map(h => <th key={h}>{h}</th>)}</tr>
             </thead>
             <tbody>
-              {products?.map(p => (
+              {products?.map((p: Product) => (
                 <tr key={p.id}>
                   <td>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>

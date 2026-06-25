@@ -2,6 +2,17 @@ import { createAdminSupabase } from '@/lib/supabase-server'
 import Link from 'next/link'
 import BlogAdminActions from './BlogAdminActions'
 
+interface BlogPost {
+  id: string
+  title: string
+  slug: string
+  cover_image?: string
+  category: string
+  author: string
+  is_published: boolean
+  created_at: string
+}
+
 export default async function AdminBlog() {
   const supabase = createAdminSupabase()
   const { data: posts } = await supabase.from('blog_posts').select('*').order('created_at', { ascending: false })
@@ -19,7 +30,7 @@ export default async function AdminBlog() {
               <tr>{['Cover', 'Title', 'Category', 'Author', 'Status', 'Date', 'Actions'].map(h => <th key={h}>{h}</th>)}</tr>
             </thead>
             <tbody>
-              {posts?.map(p => (
+              {posts?.map((p: BlogPost) => (
                 <tr key={p.id}>
                   <td>
                     {p.cover_image
