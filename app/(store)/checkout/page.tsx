@@ -26,20 +26,82 @@ export default function CheckoutPage() {
   }
 
   async function placeOrder() {
-    if (!form.name || !form.phone) return alert('Please fill name and phone')
-    setLoading(true)
+  if (!form.name || !form.phone) return alert('Please fill name and phone')
+  setLoading(true)
+
+  if (form.payment === 'online') {
+    try {
+      // Create Razorpay order
+      const res = await fetch('/api/razorpay', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: finalTotal })
+      })
+      const razorpayOrder = await res.json()
+
+      const options = {
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+        amount: razorpayOrder.amount,
+        currency: 'INR',
+        name: "Hanfi's Collection",
+        description: 'Phone Purchase',
+        order_id: razorpayOrder.id,
+        handler: async function (response: any) {
+          // Payment successful — create order in DB
+          const orderRes = await fetch('/api/orders', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              ...form,
+              items,
+              subtotal,
+              discount,
+              total: finalTotal,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_order_id: response.razorpay_order_id,
+            })
+          })
+          const data = await orderRes.json()
+          if (data.order) {
+            setOrder(data.order)
+            clearCart()
+            window.open(getOrderWhatsApp(data.order, process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210'), '_blank')
+          }
+          setLoading(false)
+        },
+        prefill: {
+          name: form.name,
+          contact: form.phone,
+          email: form.email || '',
+        },
+        theme: { color: '#c8102e' },
+        modal: {
+          ondismiss: () => setLoading(false)
+        }
+      }
+
+      const rzp = new (window as any).Razorpay(options)
+      rzp.open()
+    } catch (err) {
+      alert('Payment failed. Please try again.')
+      setLoading(false)
+    }
+  } else {
+    // COD flow
     const res = await fetch('/api/orders', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...form, items: items, subtotal, discount, total: finalTotal })
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...form, items, subtotal, discount, total: finalTotal })
     })
     const data = await res.json()
     if (data.order) {
-      setOrder(data.order); clearCart()
-      const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210'
-      window.open(getOrderWhatsApp(data.order, waNumber), '_blank')
+      setOrder(data.order)
+      clearCart()
+      window.open(getOrderWhatsApp(data.order, process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210'), '_blank')
     }
     setLoading(false)
   }
+}
 
   if (order) return (
     <div style={{ maxWidth: 600, margin: '80px auto', padding: '0 32px', textAlign: 'center' }}>
