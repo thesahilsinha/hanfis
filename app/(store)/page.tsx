@@ -1,5 +1,3 @@
-"use client"
-
 import { createAdminSupabase } from '@/lib/supabase-server'
 import Hero from '@/components/home/Hero'
 import CategoryPills from '@/components/home/CategoryPills'
