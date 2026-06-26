@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div>
             <div style={{ marginBottom: 18 }}>
-              <img src="public/logo.jpg" alt="Hanfi's Collection" style={{ height: 44, width: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)' }} />
+              <img src="https://ik.imagekit.io/amaniecomm/logo%20(2).jpg" alt="Hanfi's Collection" style={{ height: 44, width: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)' }} />
             </div>
             <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', lineHeight: 1.7, maxWidth: 280, marginBottom: 24 }}>
               Marathwada's most trusted mobile store. Premium phones, certified refurbished devices, and unbeatable prices since 2010.
