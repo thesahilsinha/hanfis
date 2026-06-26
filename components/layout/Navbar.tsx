@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { ShoppingCart, Search, MapPin, Phone, Menu, X } from 'lucide-react'
+import { ShoppingCart, Search, MapPin, Phone, Menu, X, Package } from 'lucide-react'
 import { useCart } from '@/hooks/useCart'
 import CartDrawer from '@/components/cart/CartDrawer'
 
@@ -15,6 +15,7 @@ const cats = [
   { label: 'Sell Phone', href: '/sell-phone' },
   { label: 'Branches', href: '/branches' },
   { label: 'Blog', href: '/blog' },
+  { label: 'Track Order', href: '/orders' },
   { label: 'Deals', href: '/products?badge=sale', sale: true },
 ]
 
@@ -38,10 +39,7 @@ export default function Navbar() {
   }, [menuOpen])
 
   function doSearch() {
-    if (search.trim()) {
-      window.location.href = `/products?q=${search}`
-      setSearchOpen(false)
-    }
+    if (search.trim()) { window.location.href = `/products?q=${search}`; setSearchOpen(false) }
   }
 
   return (
@@ -57,6 +55,7 @@ export default function Navbar() {
           </div>
           <div className="nav-actions">
             <Link href="/branches" className="nav-link"><MapPin size={18} /> Branches</Link>
+            <Link href="/orders" className="nav-link"><Package size={18} /> Track Order</Link>
             <a href="tel:+919876543210" className="nav-link"><Phone size={18} /> Call Us</a>
             <button className="nav-cart" onClick={() => setCartOpen(true)}>
               <ShoppingCart size={16} />
@@ -71,14 +70,12 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-
         <div className={`mobile-search-bar${searchOpen ? ' open' : ''}`}>
           <div style={{ position: 'relative' }}>
             <input autoFocus={searchOpen} value={search} onChange={e => setSearch(e.target.value)} onKeyDown={e => e.key === 'Enter' && doSearch()} placeholder="Search phones, brands..." />
             <Search size={16} className="nav-search-icon" />
           </div>
         </div>
-
         <nav className="nav-cats">
           <ul className="nav-cats-inner">
             {cats.map(c => (
@@ -92,7 +89,7 @@ export default function Navbar() {
 
       <div className={`mobile-menu${menuOpen ? ' open' : ''}`}>
         <div className="mobile-menu-inner">
-          <div className="mobile-menu-label">Shop</div>
+          <div className="mobile-menu-label">Menu</div>
           {cats.map(c => (
             <Link key={c.href} href={c.href} className={`mobile-menu-link${c.sale ? ' sale' : ''}`} onClick={() => setMenuOpen(false)}>
               {c.label}
