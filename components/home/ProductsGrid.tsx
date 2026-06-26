@@ -1,3 +1,4 @@
+"use client"
 import ProductCard from '@/components/product/ProductCard'
 import type { Product } from '@/types'
 import Link from 'next/link'

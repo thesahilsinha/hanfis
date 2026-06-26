@@ -1,3 +1,4 @@
+"use client"
 import Link from 'next/link'
 import type { Branch } from '@/types'
 import { MapPin, Phone } from 'lucide-react'

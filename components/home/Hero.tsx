@@ -1,3 +1,4 @@
+"use client"
 import Link from 'next/link'
 import { createAdminSupabase } from '@/lib/supabase-server'
 import { formatPrice } from '@/lib/utils'
