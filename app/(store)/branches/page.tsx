@@ -1,3 +1,4 @@
+export const revalidate = 0
 import { createAdminSupabase } from '@/lib/supabase-server'
 import { MapPin, Phone } from 'lucide-react'
 import type { Branch } from '@/types'

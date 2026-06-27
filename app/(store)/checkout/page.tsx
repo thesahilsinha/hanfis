@@ -1,4 +1,5 @@
 'use client'
+export const revalidate = 0
 import { useState } from 'react'
 import { useCart } from '@/hooks/useCart'
 import { formatPrice, getOrderWhatsApp } from '@/lib/utils'
