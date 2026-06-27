@@ -1,3 +1,4 @@
+export const revalidate = 0
 import { createAdminSupabase } from '@/lib/supabase-server'
 import Link from 'next/link'
 import type { Branch } from '@/types'

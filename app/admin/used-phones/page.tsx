@@ -1,3 +1,4 @@
+export const revalidate = 0
 import { createAdminSupabase } from '@/lib/supabase-server'
 import { formatPrice } from '@/lib/utils'
 import Link from 'next/link'
