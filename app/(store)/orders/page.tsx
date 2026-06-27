@@ -1,5 +1,5 @@
 'use client'
-export const revalidate = 0
+// export const revalidate = 0
 import { useState } from 'react'
 import { formatPrice } from '@/lib/utils'
 
