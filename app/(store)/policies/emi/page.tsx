@@ -1,3 +1,4 @@
+'use client'
 export default function EMIOptions() {
   return (
     <div style={{ maxWidth: 800, margin: '0 auto', padding: '64px 24px' }}>
