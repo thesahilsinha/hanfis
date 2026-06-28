@@ -1,5 +1,4 @@
 'use client'
-// export const revalidate = 0
 import { useState } from 'react'
 
 export default function SellPhonePage() {
@@ -16,61 +15,67 @@ export default function SellPhonePage() {
   }
 
   if (done) return (
-    <div style={{ maxWidth: 600, margin: '80px auto', padding: '0 32px', textAlign: 'center' }}>
+    <div style={{ maxWidth: 600, margin: '80px auto', padding: '0 16px', textAlign: 'center' }}>
       <div style={{ fontSize: 64, marginBottom: 16 }}>💸</div>
       <h1 style={{ fontSize: 28, fontWeight: 800, marginBottom: 8 }}>Request Submitted!</h1>
-      <p style={{ color: '#888' }}>We've opened WhatsApp for you. Our team will provide an instant quote within minutes!</p>
+      <p style={{ color: '#888' }}>We've opened WhatsApp. Our team will give an instant quote!</p>
     </div>
   )
 
   return (
-    <div style={{ maxWidth: 700, margin: '0 auto', padding: '64px 32px' }}>
-      <div style={{ textAlign: 'center', marginBottom: 48 }}>
-        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: '#c8102e', marginBottom: 8 }}>INSTANT QUOTE</div>
-        <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: 40, fontWeight: 800, marginBottom: 12 }}>Sell Your Phone</h1>
+    <div style={{ maxWidth: 700, margin: '0 auto', padding: '40px 16px 64px' }}>
+      <div style={{ textAlign: 'center', marginBottom: 36 }}>
+        <div className="section-label" style={{ justifyContent: 'center', display: 'flex' }}>INSTANT QUOTE</div>
+        <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(26px,5vw,40px)', fontWeight: 800, marginBottom: 12 }}>Sell Your Phone</h1>
         <p style={{ color: '#888', fontSize: 15 }}>Get the best price for your old phone. Instant quote, same-day payment.</p>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, marginBottom: 48 }}>
+
+      <div className="sell-steps">
         {[['📸', 'Share Details', 'Fill the form below'], ['💬', 'Get Instant Quote', 'Via WhatsApp in minutes'], ['💰', 'Get Paid', 'UPI payment same day']].map(([e, t, s]) => (
-          <div key={t} style={{ background: '#f9f9f9', borderRadius: 16, padding: 20, textAlign: 'center' }}>
-            <div style={{ fontSize: 28, marginBottom: 8 }}>{e}</div>
-            <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 4 }}>{t}</div>
-            <div style={{ fontSize: 12, color: '#888' }}>{s}</div>
+          <div key={t} className="sell-step">
+            <div style={{ fontSize: 24, marginBottom: 8 }}>{e}</div>
+            <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 4 }}>{t}</div>
+            <div style={{ fontSize: 11, color: '#888' }}>{s}</div>
           </div>
         ))}
       </div>
-      <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-          {[['name', 'Your Name *', 'text'], ['phone', 'Phone Number *', 'tel']].map(([k, l, t]) => (
-            <div key={k}>
-              <label style={{ fontSize: 13, fontWeight: 600, display: 'block', marginBottom: 6 }}>{l}</label>
-              <input required type={t} value={(form as any)[k]} onChange={e => setForm({ ...form, [k]: e.target.value })}
-                style={{ width: '100%', padding: '12px 16px', border: '1.5px solid #e8e8e8', borderRadius: 10, fontSize: 14, outline: 'none' }} />
-            </div>
-          ))}
+
+      <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <div className="form-grid-2">
+          <div className="form-group">
+            <label className="form-label">Your Name *</label>
+            <input required className="form-input" type="text" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
+          </div>
+          <div className="form-group">
+            <label className="form-label">Phone Number *</label>
+            <input required className="form-input" type="tel" value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} />
+          </div>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
-          {[['brand', 'Brand *'], ['model', 'Model *'], ['storage', 'Storage (GB)']].map(([k, l]) => (
-            <div key={k}>
-              <label style={{ fontSize: 13, fontWeight: 600, display: 'block', marginBottom: 6 }}>{l}</label>
-              <input value={(form as any)[k]} onChange={e => setForm({ ...form, [k]: e.target.value })}
-                style={{ width: '100%', padding: '12px 16px', border: '1.5px solid #e8e8e8', borderRadius: 10, fontSize: 14, outline: 'none' }} />
-            </div>
-          ))}
+        <div className="form-grid-3">
+          <div className="form-group">
+            <label className="form-label">Brand *</label>
+            <input className="form-input" value={form.brand} onChange={e => setForm({ ...form, brand: e.target.value })} />
+          </div>
+          <div className="form-group">
+            <label className="form-label">Model *</label>
+            <input className="form-input" value={form.model} onChange={e => setForm({ ...form, model: e.target.value })} />
+          </div>
+          <div className="form-group">
+            <label className="form-label">Storage (GB)</label>
+            <input className="form-input" value={form.storage} onChange={e => setForm({ ...form, storage: e.target.value })} />
+          </div>
         </div>
-        <div>
-          <label style={{ fontSize: 13, fontWeight: 600, display: 'block', marginBottom: 6 }}>Condition *</label>
-          <select value={form.condition} onChange={e => setForm({ ...form, condition: e.target.value })}
-            style={{ width: '100%', padding: '12px 16px', border: '1.5px solid #e8e8e8', borderRadius: 10, fontSize: 14, outline: 'none', background: '#fff' }}>
+        <div className="form-group">
+          <label className="form-label">Condition *</label>
+          <select className="form-select" value={form.condition} onChange={e => setForm({ ...form, condition: e.target.value })}>
             {['Excellent', 'Good', 'Fair', 'Poor'].map(c => <option key={c}>{c}</option>)}
           </select>
         </div>
-        <div>
-          <label style={{ fontSize: 13, fontWeight: 600, display: 'block', marginBottom: 6 }}>Additional Details</label>
-          <textarea value={form.description} onChange={e => setForm({ ...form, description: e.target.value })} rows={3} placeholder="Any accessories included, scratches, issues..."
-            style={{ width: '100%', padding: '12px 16px', border: '1.5px solid #e8e8e8', borderRadius: 10, fontSize: 14, outline: 'none', resize: 'vertical' }} />
+        <div className="form-group">
+          <label className="form-label">Additional Details</label>
+          <textarea className="form-textarea" value={form.description} onChange={e => setForm({ ...form, description: e.target.value })} rows={3} placeholder="Any accessories, scratches, issues..." />
         </div>
-        <button type="submit" style={{ padding: 16, background: '#25d366', color: '#fff', border: 'none', borderRadius: 14, fontSize: 15, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+        <button type="submit" style={{ padding: 16, background: '#25d366', color: '#fff', border: 'none', borderRadius: 14, fontSize: 15, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, fontFamily: 'inherit' }}>
           💬 Get Instant Quote on WhatsApp
         </button>
       </form>

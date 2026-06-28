@@ -93,7 +93,7 @@ export default function CheckoutPage() {
         </div>
 
         <div>
-          <div style={{ background: '#f9f9f9', borderRadius: 16, padding: 24, position: 'sticky', top: 90 }}>
+          <div style={{ background: '#f9f9f9', borderRadius: 16, padding: 24, position: 'sticky', top: 70 }}>
             <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 20 }}>Order Summary</h3>
             {items.map(item => (
               <div key={item.id} style={{ display: 'flex', gap: 12, marginBottom: 16 }}>

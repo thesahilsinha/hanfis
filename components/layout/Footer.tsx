@@ -7,16 +7,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div>
             <div style={{ marginBottom: 18 }}>
-              <img
-                src="/logo.jpg"
-                alt="Hanfi's Collection"
-                style={{ height: 44, width: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)' }}
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none'
-                  e.currentTarget.nextElementSibling?.setAttribute('style', 'display:block')
-                }}
-              />
-              <div style={{ display: 'none', fontSize: 22, fontWeight: 800, color: '#fff' }}>
+              <div style={{ fontSize: 22, fontWeight: 800, color: '#fff', letterSpacing: '-0.3px' }}>
                 Hanfi's <span style={{ color: '#c8102e' }}>Collection</span>
               </div>
             </div>
@@ -25,14 +16,12 @@ export default function Footer() {
             </p>
             <div className="social-row">
               {[
-                { l: 'Instagram', href: 'https://instagram.com' },
-                { l: 'Facebook', href: 'https://facebook.com' },
-                { l: 'YouTube', href: 'https://youtube.com' },
-                { l: 'WhatsApp', href: 'https://wa.me/919876543210' },
+                { l: 'I', href: 'https://instagram.com' },
+                { l: 'F', href: 'https://facebook.com' },
+                { l: 'Y', href: 'https://youtube.com' },
+                { l: 'W', href: 'https://wa.me/919876543210' },
               ].map(s => (
-                <a key={s.l} href={s.href} target="_blank" rel="noreferrer" className="social-ic" title={s.l}>
-                  {s.l[0]}
-                </a>
+                <a key={s.l} href={s.href} target="_blank" rel="noreferrer" className="social-ic">{s.l}</a>
               ))}
             </div>
           </div>
