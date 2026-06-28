@@ -18,7 +18,7 @@ export default async function ProductsPage({ searchParams }: { searchParams: any
         {sp.brand ? `${sp.brand} Phones` : sp.q ? `Results for "${sp.q}"` : 'All Phones'}
       </h1>
       <p style={{ color: '#888', marginBottom: 40 }}>{products?.length || 0} phones found</p>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20 }}>
         {products?.map(p => <ProductCard key={p.id} product={p} />)}
       </div>
       {!products?.length && <div style={{ textAlign: 'center', padding: '80px 0', color: '#888' }}>No phones found. Try a different search.</div>}
