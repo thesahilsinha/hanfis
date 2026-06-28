@@ -30,7 +30,7 @@ export default function AIChat() {
     <>
       <button onClick={() => setOpen(!open)} className="fab" style={{ position: 'fixed', bottom: 84, right: 24, zIndex: 9999, background: '#c8102e' }}>
         <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8" width="22" height="22">
-          <path d="M12 2a8 8 0 0 1 8 8c0 5.25-5.5 10-8 12-2.5-2-8-6.75-8-12a8 8 0 0 1 8-8z"/><circle cx="12" cy="10" r="3"/>
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
         </svg>
       </button>
       {open && (
@@ -60,7 +60,7 @@ export default function AIChat() {
             ))}
             {loading && (
               <div className="msg-bot">
-                <div className="bubble-bot"><div className="typing">{[0,1,2].map(i => <div key={i} className="dot" />)}</div></div>
+                <div className="bubble-bot"><div className="typing">{[0, 1, 2].map(i => <div key={i} className="dot" />)}</div></div>
               </div>
             )}
           </div>
@@ -68,7 +68,7 @@ export default function AIChat() {
             <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === 'Enter' && send()} placeholder="Type your message..."
               style={{ flex: 1, padding: '10px 14px', background: '#f4f4f4', border: '1.5px solid transparent', borderRadius: 50, fontSize: 13, outline: 'none', fontFamily: 'inherit' }} />
             <button onClick={send} style={{ width: 38, height: 38, borderRadius: '50%', background: '#0a0a0a', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" width="16" height="16"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" width="16" height="16"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" /></svg>
             </button>
           </div>
         </div>
