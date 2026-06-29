@@ -11,7 +11,7 @@ const cats = [
   { label: 'Samsung', href: '/products?brand=Samsung' },
   { label: 'OnePlus', href: '/products?brand=OnePlus' },
   { label: 'Xiaomi', href: '/products?brand=Xiaomi' },
-  { label: 'Buy Used', href: '/buy-used' },
+  { label: 'Buy Pre-owned', href: '/buy-used' },
   { label: 'Sell Phone', href: '/sell-phone' },
   { label: 'Branches', href: '/branches' },
   { label: 'Blog', href: '/blog' },
