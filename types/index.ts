@@ -16,6 +16,8 @@ export interface Product {
   rating: number
   review_count: number
   created_at: string
+  color_variants?: Array<{ color: string; hex: string; slug: string }>
+related_group?: string
 }
 
 export interface UsedPhone {
