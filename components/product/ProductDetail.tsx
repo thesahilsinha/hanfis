@@ -83,7 +83,7 @@ export default function ProductDetail({ product, related }: { product: Product; 
       {related.length > 0 && (
         <div>
           <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(20px, 3vw, 28px)', fontWeight: 800, marginBottom: 20 }}>Related Products</h2>
-          <div className="product-grid">
+          <div className="products-grid">
             {related.map(p => <ProductCard key={p.id} product={p} />)}
           </div>
         </div>
