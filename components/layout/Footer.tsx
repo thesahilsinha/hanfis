@@ -35,6 +35,7 @@ export default function Footer() {
             <Link href="/products?brand=Xiaomi" className="footer-link">Xiaomi</Link>
             <Link href="/buy-used" className="footer-link">Buy Used Phone</Link>
             <Link href="/sell-phone" className="footer-link">Sell Your Phone</Link>
+            <Link href="/accessories" className="footer-link">Accessories</Link>
           </div>
 
           <div>

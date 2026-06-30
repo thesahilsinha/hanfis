@@ -5,19 +5,24 @@ import { ShoppingCart, Search, MapPin, Phone, Menu, X, Package } from 'lucide-re
 import { useCart } from '@/hooks/useCart'
 import CartDrawer from '@/components/cart/CartDrawer'
 
+
 const cats = [
   { label: 'All Phones', href: '/products' },
   { label: 'iPhone', href: '/products?brand=Apple' },
   { label: 'Samsung', href: '/products?brand=Samsung' },
   { label: 'OnePlus', href: '/products?brand=OnePlus' },
   { label: 'Xiaomi', href: '/products?brand=Xiaomi' },
-  { label: 'Buy Pre-owned', href: '/buy-used' },
+  { label: 'Accessories', href: '/accessories' },
+  { label: 'Buy Used', href: '/buy-used' },
   { label: 'Sell Phone', href: '/sell-phone' },
   { label: 'Branches', href: '/branches' },
   { label: 'Blog', href: '/blog' },
   { label: 'Track Order', href: '/orders' },
   { label: 'Deals', href: '/products?badge=sale', sale: true },
 ]
+
+
+
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)

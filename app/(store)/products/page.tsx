@@ -2,6 +2,8 @@ export const revalidate = 0
 import { createAdminSupabase } from '@/lib/supabase-server'
 import ProductCard from '@/components/product/ProductCard'
 
+
+
 export default async function ProductsPage({ searchParams }: { searchParams: any }) {
   const supabase = createAdminSupabase()
   const sp = await searchParams
@@ -25,3 +27,4 @@ export default async function ProductsPage({ searchParams }: { searchParams: any
     </div>
   )
 }
+

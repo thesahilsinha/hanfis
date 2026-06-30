@@ -7,6 +7,7 @@ import { Menu, X } from 'lucide-react'
 const links = [
   { href: '/admin', label: 'Dashboard', icon: '📊' },
   { href: '/admin/products', label: 'Products', icon: '📱' },
+  { href: '/admin/accessories', label: 'Accessories', icon: '🎧' },
   { href: '/admin/orders', label: 'Orders', icon: '📦' },
   { href: '/admin/used-phones', label: 'Used Phones', icon: '♻️' },
   { href: '/admin/branches', label: 'Branches', icon: '🏪' },
@@ -15,6 +16,10 @@ const links = [
   { href: '/admin/coupons', label: 'Coupons', icon: '🎟️' },
   { href: '/admin/settings', label: 'Settings', icon: '⚙️' },
 ]
+
+
+
+
 
 export default function AdminSidebar() {
   const path = usePathname()

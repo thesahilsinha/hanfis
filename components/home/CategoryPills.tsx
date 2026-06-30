@@ -11,10 +11,8 @@ const cats = [
   { label: 'Vivo', href: '/products?brand=Vivo' },
   { label: 'OPPO', href: '/products?brand=OPPO' },
   { label: 'Realme', href: '/products?brand=Realme' },
-  { label: 'Motorola', href: '/products?brand=Motorola' },
-  { label: 'Nokia', href: '/products?brand=Nokia' },
+  { label: 'Accessories', href: '/accessories' },
   { label: 'Under 20K', href: '/products?max=20000' },
-  { label: 'Under 50K', href: '/products?max=50000' },
   { label: 'Refurbished', href: '/buy-used' },
 ]
 
