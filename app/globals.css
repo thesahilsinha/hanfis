@@ -490,3 +490,85 @@ button { font-family: inherit; }
   .cat-pill { padding: 6px 10px !important; }
   .cat-pill span { font-size: 10px !important; }
 }
+
+/* ================================================================
+   ADMIN MOBILE FIXES
+================================================================ */
+@media (max-width: 768px) {
+  /* Admin layout */
+  .admin-layout { flex-direction: column !important; }
+  .admin-main { width: 100vw !important; min-width: 0 !important; overflow-x: hidden !important; }
+
+  /* Admin pages inner padding */
+  .admin-main > div { padding: 16px 12px !important; }
+
+  /* Page header */
+  .page-header { flex-direction: column !important; align-items: flex-start !important; gap: 10px !important; margin-bottom: 16px !important; }
+  .page-header a, .page-header button { width: 100% !important; text-align: center !important; justify-content: center !important; }
+  .page-header div { width: 100% !important; display: flex !important; gap: 8px !important; }
+  .page-header div a, .page-header div button { flex: 1 !important; }
+
+  /* Tables — horizontal scroll */
+  .admin-table-wrap { border-radius: 12px !important; }
+  .admin-table-scroll { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; width: 100% !important; }
+  .admin-table { min-width: 600px !important; }
+  .admin-table th, .admin-table td { padding: 10px 12px !important; font-size: 12px !important; white-space: nowrap !important; }
+
+  /* Stats grid */
+  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; margin-bottom: 16px !important; }
+  .stat-card { padding: 14px !important; border-radius: 12px !important; }
+  .stat-card > div:first-child { font-size: 22px !important; margin-bottom: 6px !important; }
+  .stat-card > div:nth-child(2) { font-size: 22px !important; }
+  .stat-card > div:last-child { font-size: 12px !important; }
+
+  /* Forms */
+  .admin-form-card { padding: 16px 12px !important; border-radius: 14px !important; }
+  .form-group { margin-bottom: 12px !important; }
+  .form-grid-2 { grid-template-columns: 1fr !important; gap: 0 !important; }
+  .form-grid-3 { grid-template-columns: 1fr !important; gap: 0 !important; }
+  .form-input { font-size: 16px !important; } /* prevent iOS zoom */
+  .form-textarea { font-size: 16px !important; }
+  .form-select { font-size: 16px !important; }
+
+  /* Page titles */
+  .page-title { font-size: 20px !important; }
+
+  /* Quick actions grid on dashboard */
+  .admin-main [style*="repeat(auto-fill"] { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+
+  /* Order detail */
+  .order-detail-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+
+  /* Branch cards grid */
+  .admin-main [style*="minmax(300px"] { grid-template-columns: 1fr !important; }
+
+  /* Gallery grid in admin */
+  .admin-main [style*="minmax(200px"] { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+
+  /* Topbar */
+  .admin-topbar { height: 52px !important; padding: 0 12px !important; position: sticky !important; top: 0 !important; z-index: 100 !important; }
+
+  /* Mobile menu */
+  .admin-mobile-menu { padding-top: 60px !important; }
+  .admin-sidebar-link { padding: 14px 20px !important; font-size: 15px !important; }
+
+  /* Prevent horizontal overflow on entire admin */
+  body { overflow-x: hidden !important; }
+
+  /* Blog preview image */
+  .admin-main img[style*="height: 140"] { height: 120px !important; }
+
+  /* Coupon code input */
+  .admin-main input[style*="fontFamily: 'monospace'"] { font-size: 15px !important; }
+
+  /* Bulk upload table */
+  .admin-main table { font-size: 11px !important; }
+  .admin-main table th, .admin-main table td { padding: 6px 8px !important; }
+}
+
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .admin-main [style*="repeat(auto-fill"] { grid-template-columns: 1fr !important; }
+  .admin-main [style*="minmax(200px"] { grid-template-columns: 1fr !important; }
+  .page-title { font-size: 18px !important; }
+}

@@ -13,7 +13,12 @@ export default async function AdminProducts() {
     <div style={{ padding: '24px 20px' }}>
       <div className="page-header">
         <h1 className="page-title">Products ({products?.length || 0})</h1>
-        <Link href="/admin/products/new" className="btn-primary">+ Add Product</Link>
+        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+          <Link href="/admin/products/bulk" style={{ padding: '11px 18px', background: '#f4f4f4', color: '#0a0a0a', borderRadius: 12, fontSize: 13, fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
+            📊 Bulk Upload
+          </Link>
+          <Link href="/admin/products/new" className="btn-primary" style={{ whiteSpace: 'nowrap' }}>+ Add Product</Link>
+        </div>
       </div>
       <div style={{ display: 'flex', gap: 12 }}>
         <Link href="/admin/products/bulk" style={{ padding: '12px 20px', background: '#f4f4f4', color: '#0a0a0a', borderRadius: 12, fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>
