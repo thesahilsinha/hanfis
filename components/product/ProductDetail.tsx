@@ -26,7 +26,7 @@ export default function ProductDetail({ product, related, variants }: {
   const [imgIdx, setImgIdx] = useState(0)
   const router = useRouter()
   const addItem = useCart(s => s.addItem)
-  const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210'
+  const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '917249391385'
   const waLink = getWhatsAppLink(waNumber, `Hi! I want to buy ${product.name} (₹${product.price.toLocaleString('en-IN')}). Is it available?`)
 
   const colorVariants: ColorVariant[] = product.color_variants || []

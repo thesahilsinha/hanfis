@@ -61,7 +61,7 @@ export default function Navbar() {
           <div className="nav-actions">
             <Link href="/branches" className="nav-link"><MapPin size={18} /> Branches</Link>
             <Link href="/orders" className="nav-link"><Package size={18} /> Track Order</Link>
-            <a href="tel:+919876543210" className="nav-link"><Phone size={18} /> Call Us</a>
+            <a href="tel:+917249391385" className="nav-link"><Phone size={18} /> Call Us</a>
             <button className="nav-cart" onClick={() => setCartOpen(true)}>
               <ShoppingCart size={16} />
               <span>Cart</span>
@@ -101,10 +101,10 @@ export default function Navbar() {
             </Link>
           ))}
           <div className="mobile-menu-actions">
-            <a href="tel:+919876543210" className="mobile-menu-btn" style={{ background: '#f4f4f4', color: '#0a0a0a' }}>
+            <a href="tel:+917249391385" className="mobile-menu-btn" style={{ background: '#f4f4f4', color: '#0a0a0a' }}>
               <Phone size={20} /> Call Us
             </a>
-            <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="mobile-menu-btn" style={{ background: '#25d366', color: '#fff' }}>
+            <a href="https://wa.me/917249391385" target="_blank" rel="noreferrer" className="mobile-menu-btn" style={{ background: '#25d366', color: '#fff' }}>
               WhatsApp Us
             </a>
             <Link href="/branches" className="mobile-menu-btn" style={{ background: '#f4f4f4', color: '#0a0a0a' }} onClick={() => setMenuOpen(false)}>

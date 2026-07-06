@@ -53,7 +53,7 @@ export default function TrackOrderPage() {
         <div style={{ textAlign: 'center', padding: '48px 0', color: '#888' }}>
           <div style={{ fontSize: 48, marginBottom: 16 }}>📦</div>
           <p style={{ fontSize: 16, fontWeight: 600, marginBottom: 8 }}>No orders found</p>
-          <p style={{ fontSize: 14 }}>Try a different phone number or <a href="https://wa.me/919876543210" style={{ color: '#c8102e' }}>WhatsApp us</a></p>
+          <p style={{ fontSize: 14 }}>Try a different phone number or <a href="https://wa.me/917249391385" style={{ color: '#c8102e' }}>WhatsApp us</a></p>
         </div>
       )}
 
@@ -105,7 +105,7 @@ export default function TrackOrderPage() {
             ))}
             <div style={{ marginTop: 12, paddingTop: 12, borderTop: '1px solid #f4f4f4', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ fontSize: 13, color: '#888', textTransform: 'uppercase', fontWeight: 600 }}>{order.payment_method}</span>
-              <a href={`https://wa.me/919876543210?text=${encodeURIComponent(`Hi! I want to check status of order ${order.order_number}`)}`} target="_blank" rel="noreferrer"
+              <a href={`https://wa.me/917249391385?text=${encodeURIComponent(`Hi! I want to check status of order ${order.order_number}`)}`} target="_blank" rel="noreferrer"
                 style={{ fontSize: 13, fontWeight: 600, color: '#25d366', textDecoration: 'none' }}>
                 💬 WhatsApp Support
               </a>

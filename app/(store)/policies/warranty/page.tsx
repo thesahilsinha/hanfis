@@ -17,7 +17,7 @@ export default function WarrantyPolicy() {
       ))}
       <div style={{ background: '#f9f9f9', borderRadius: 16, padding: 24, marginTop: 40 }}>
         <p style={{ fontSize: 15, fontWeight: 600, marginBottom: 8 }}>Warranty claim support</p>
-        <a href="https://wa.me/919876543210" style={{ color: '#25d366', fontWeight: 700 }}>💬 WhatsApp us at +91 98765 43210</a>
+        <a href="https://wa.me/917249391385" style={{ color: '#25d366', fontWeight: 700 }}>💬 WhatsApp us at +91 98765 43210</a>
       </div>
     </div>
   )

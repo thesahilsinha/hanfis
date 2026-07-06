@@ -1,6 +1,6 @@
 'use client'
 export default function FloatingButtons() {
-  const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210'
+  const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '917249391385'
   return (
     <div className="floating-wrap">
       <a href={`https://wa.me/${waNumber}?text=${encodeURIComponent("Hi Hanfi's! I'm interested in buying a phone.")}`} target="_blank" rel="noreferrer">

@@ -8,7 +8,7 @@ export default async function AdminOrderDetail({ params }: { params: Promise<{ i
   const { id } = await params
   const { data: order } = await supabase.from('orders').select('*').eq('id', id).single()
   if (!order) return notFound()
-  const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210'
+  const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '917249391385'
 
   return (
     <div style={{ padding: '24px 20px', maxWidth: 900 }}>

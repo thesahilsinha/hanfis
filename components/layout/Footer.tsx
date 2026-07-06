@@ -19,7 +19,7 @@ export default function Footer() {
                 { l: 'I', href: 'https://www.instagram.com/hanfis_collection/' },
                 // { l: 'F', href: 'https://facebook.com' },
                 { l: 'Y', href: 'https://www.youtube.com/@hanfiscollection8067' },
-                // { l: 'W', href: 'https://wa.me/919876543210' },
+                // { l: 'W', href: 'https://wa.me/917249391385' },
               ].map(s => (
                 <a key={s.l} href={s.href} target="_blank" rel="noreferrer" className="social-ic">{s.l}</a>
               ))}
@@ -51,8 +51,8 @@ export default function Footer() {
           <div>
             <div className="footer-col-title">Contact</div>
             {[
-              { icon: '📞', text: '+91 98765 43210', href: 'tel:+919876543210' },
-              { icon: '💬', text: 'WhatsApp Us', href: 'https://wa.me/919876543210' },
+              { icon: '📞', text: '+91 98765 43210', href: 'tel:+917249391385' },
+              { icon: '💬', text: 'WhatsApp Us', href: 'https://wa.me/917249391385' },
               { icon: '📧', text: 'hello@hanfiscollection.com', href: 'mailto:hello@hanfiscollection.com' },
               { icon: '📍', text: 'Multiple locations, Marathwada', href: '/branches' },
               { icon: '🕐', text: '10 AM – 9 PM, All days', href: '#' },

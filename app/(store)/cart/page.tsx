@@ -32,7 +32,7 @@ export default function CheckoutPage() {
     const data = await res.json()
     if (data.order) {
       setOrder(data.order); clearCart()
-      window.open(getOrderWhatsApp(data.order, process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210'), '_blank')
+      window.open(getOrderWhatsApp(data.order, process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '917249391385'), '_blank')
     }
     setLoading(false)
   }

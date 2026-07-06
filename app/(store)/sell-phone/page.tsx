@@ -8,7 +8,7 @@ export default function SellPhonePage() {
   async function submit(e: React.FormEvent) {
     e.preventDefault()
     await fetch('/api/used-phones', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...form, type: 'sell', price: 0, status: 'pending' }) })
-    const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210'
+    const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '917249391385'
     const msg = `Hi Hanfi's! I want to sell my phone.\n\nBrand: ${form.brand}\nModel: ${form.model}\nStorage: ${form.storage}\nCondition: ${form.condition}\nName: ${form.name}\nPhone: ${form.phone}`
     window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`, '_blank')
     setDone(true)

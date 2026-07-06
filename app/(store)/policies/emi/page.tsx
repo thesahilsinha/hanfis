@@ -31,7 +31,7 @@ export default function EMIOptions() {
       ))}
       <div style={{ background: '#0a0a0a', borderRadius: 16, padding: 24, marginTop: 40, color: '#fff' }}>
         <p style={{ fontSize: 15, fontWeight: 600, marginBottom: 8 }}>Questions about EMI?</p>
-        <a href="https://wa.me/919876543210" style={{ color: '#25d366', fontWeight: 700 }}>💬 WhatsApp us at +91 98765 43210</a>
+        <a href="https://wa.me/917249391385" style={{ color: '#25d366', fontWeight: 700 }}>💬 WhatsApp us at +91 98765 43210</a>
       </div>
     </div>
   )

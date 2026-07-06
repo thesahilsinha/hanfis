@@ -6,7 +6,7 @@ import type { UsedPhone } from '@/types'
 export default async function BuyUsedPage() {
   const supabase = createAdminSupabase()
   const { data: phones } = await supabase.from('used_phones').select('*').eq('type', 'buy').eq('status', 'active').order('created_at', { ascending: false })
-  const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210'
+  const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '917249391385'
   const conditionColors: Record<string, string> = { Excellent: '#1a8a4a', Good: '#0071e3', Fair: '#f59e0b', Poor: '#c8102e' }
 
   return (

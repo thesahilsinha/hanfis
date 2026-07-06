@@ -125,7 +125,7 @@ export default function CheckoutPage() {
               clearCart()
               setOrder(data.order)
               // Open WhatsApp confirmation
-              const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210'
+              const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '917249391385'
               window.open(getOrderWhatsApp(data.order, waNumber), '_blank')
             }
             setLoading(false)
@@ -151,7 +151,7 @@ export default function CheckoutPage() {
         if (data.order) {
           clearCart()
           setOrder(data.order)
-          const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210'
+          const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '917249391385'
           window.open(getOrderWhatsApp(data.order, waNumber), '_blank')
         }
         setLoading(false)

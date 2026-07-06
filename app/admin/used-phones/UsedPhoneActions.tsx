@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation'
 
 export default function UsedPhoneActions({ phone }: { phone: any }) {
   const router = useRouter()
-  const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210'
+  const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '917249391385'
 
   async function markSold() {
     await fetch('/api/used-phones', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: phone.id, status: 'sold' }) })

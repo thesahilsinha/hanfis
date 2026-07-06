@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 
 export default function AdminSettings() {
-  const [settings, setSettings] = useState({ online_payment_enabled: true, cod_enabled: true, announcement_text: '', whatsapp_number: '919876543210' })
+  const [settings, setSettings] = useState({ online_payment_enabled: true, cod_enabled: true, announcement_text: '', whatsapp_number: '917249391385' })
   const [loading, setLoading] = useState(false)
   const [saved, setSaved] = useState(false)
 
@@ -44,9 +44,9 @@ export default function AdminSettings() {
       </div>
       <div style={{ background: '#fff', borderRadius: 20, padding: 32, border: '1.5px solid #e8e8e8', marginBottom: 24 }}>
         <h2 style={{ fontSize: 16, fontWeight: 700, marginBottom: 16 }}>WhatsApp Number</h2>
-        <input value={settings.whatsapp_number} onChange={e => setSettings(s => ({ ...s, whatsapp_number: e.target.value }))} placeholder="919876543210"
+        <input value={settings.whatsapp_number} onChange={e => setSettings(s => ({ ...s, whatsapp_number: e.target.value }))} placeholder="917249391385"
           style={{ width: '100%', padding: '12px 16px', border: '1.5px solid #e8e8e8', borderRadius: 10, fontSize: 14, outline: 'none' }} />
-        <p style={{ fontSize: 12, color: '#888', marginTop: 6 }}>Country code + number, no spaces or + (e.g. 919876543210)</p>
+        <p style={{ fontSize: 12, color: '#888', marginTop: 6 }}>Country code + number, no spaces or + (e.g. 917249391385)</p>
       </div>
       <button onClick={save} disabled={loading}
         style={{ width: '100%', padding: 16, background: saved ? '#1a8a4a' : '#0a0a0a', color: '#fff', border: 'none', borderRadius: 14, fontSize: 15, fontWeight: 700, cursor: 'pointer', transition: 'background .3s' }}>

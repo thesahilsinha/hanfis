@@ -4,7 +4,7 @@ import { createAdminSupabase } from '@/lib/supabase-server'
 export async function GET() {
   const supabase = createAdminSupabase()
   const { data } = await supabase.from('site_settings').select('*').single()
-  return NextResponse.json(data || { online_payment_enabled: true, cod_enabled: true, announcement_text: '', whatsapp_number: '919876543210' })
+  return NextResponse.json(data || { online_payment_enabled: true, cod_enabled: true, announcement_text: '', whatsapp_number: '917249391385' })
 }
 
 export async function PUT(req: NextRequest) {
