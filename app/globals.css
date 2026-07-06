@@ -137,7 +137,8 @@ button { font-family: inherit; }
 .brands-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 20px; }
 .brand-card { background: #fff; border-radius: 16px; padding: 24px 16px; display: flex; align-items: center; justify-content: center; border: 1.5px solid var(--gray-200); transition: all .2s; cursor: pointer; text-decoration: none; }
 .brand-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); border-color: transparent; }
-.brand-card img { height: 32px; object-fit: contain; filter: grayscale(100%); opacity: 0.6; max-width: 100%; }
+/* .brand-card img { height: 32px; object-fit: contain; filter: grayscale(100%); opacity: 0.6; max-width: 100%; } */
+.brand-card img { height: 32px; object-fit: contain; max-width: 100%; }
 
 /* ── EMI CALCULATOR ── */
 .emi-section { background: var(--black); padding: 80px 0; }

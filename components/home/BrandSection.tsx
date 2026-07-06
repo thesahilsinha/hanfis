@@ -26,7 +26,7 @@ export default function BrandSection() {
         <div className="brands-grid">
           {brands.map(b => (
             <Link key={b.name} href={b.href} className="brand-card" style={{ textDecoration: 'none' }}>
-              <img src={b.logo} alt={b.name} style={{ height: 36, objectFit: 'contain', filter: 'grayscale(100%)', opacity: 0.6, maxWidth: '100%' }} />
+              <img src={b.logo} alt={b.name} style={{ height: 36, objectFit: 'contain', maxWidth: '100%' }} />
             </Link>
           ))}
         </div>
