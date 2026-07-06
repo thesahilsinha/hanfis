@@ -51,7 +51,7 @@ export default function Footer() {
           <div>
             <div className="footer-col-title">Contact</div>
             {[
-              { icon: '📞', text: '+91 98765 43210', href: 'tel:+917249391385' },
+              { icon: '📞', text: '+91 72493 91385', href: 'tel:+917249391385' },
               { icon: '💬', text: 'WhatsApp Us', href: 'https://wa.me/917249391385' },
               { icon: '📧', text: 'hello@hanfiscollection.com', href: 'mailto:hello@hanfiscollection.com' },
               { icon: '📍', text: 'Multiple locations, Marathwada', href: '/branches' },
