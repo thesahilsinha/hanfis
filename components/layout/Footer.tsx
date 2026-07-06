@@ -16,10 +16,10 @@ export default function Footer() {
             </p>
             <div className="social-row">
               {[
-                { l: 'I', href: 'https://instagram.com' },
-                { l: 'F', href: 'https://facebook.com' },
-                { l: 'Y', href: 'https://youtube.com' },
-                { l: 'W', href: 'https://wa.me/919876543210' },
+                { l: 'I', href: 'https://www.instagram.com/hanfis_collection/' },
+                // { l: 'F', href: 'https://facebook.com' },
+                { l: 'Y', href: 'https://www.youtube.com/@hanfiscollection8067' },
+                // { l: 'W', href: 'https://wa.me/919876543210' },
               ].map(s => (
                 <a key={s.l} href={s.href} target="_blank" rel="noreferrer" className="social-ic">{s.l}</a>
               ))}
