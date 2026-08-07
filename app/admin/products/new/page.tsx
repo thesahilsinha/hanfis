@@ -5,7 +5,7 @@ import { generateSlug } from '@/lib/utils'
 
 export default function NewProductPage() {
   const router = useRouter()
-  const [form, setForm] = useState({ name: '', brand: 'Apple', category: 'Smartphone', description: '', price: '', old_price: '', badge: '', in_stock: true, featured: false, emi_available: true, images: '', specs: '{}' })
+  const [form, setForm] = useState({ name: '', brand: 'Apple', category: 'Smartphone', description: '', price: '', old_price: '', badge: '', in_stock: true, featured: false, emi_available: true, images: '', specs: '{}',ram: '', storage: '' })
   const [loading, setLoading] = useState(false)
 
   async function save() {
@@ -52,6 +52,22 @@ export default function NewProductPage() {
             </select>
           </div>
         </div>
+        <div className="form-grid-2">
+  <div className="form-group">
+    <label className="form-label">RAM</label>
+    <select className="form-select" value={form.ram} onChange={e => setForm({ ...form, ram: e.target.value })}>
+      <option value="">Select RAM</option>
+      {['2GB','3GB','4GB','6GB','8GB','12GB','16GB','24GB','32GB','36GB'].map(r => <option key={r}>{r}</option>)}
+    </select>
+  </div>
+  <div className="form-group">
+    <label className="form-label">Storage</label>
+    <select className="form-select" value={form.storage} onChange={e => setForm({ ...form, storage: e.target.value })}>
+      <option value="">Select Storage</option>
+      {['32GB','64GB','128GB','256GB','512GB','1TB','256GB SSD','512GB SSD','1TB SSD','2TB SSD'].map(s => <option key={s}>{s}</option>)}
+    </select>
+  </div>
+</div>
         <div className="form-group">
           <label className="form-label">Description</label>
           <textarea className="form-textarea" rows={3} value={form.description} onChange={e => setForm({ ...form, description: e.target.value })} />
