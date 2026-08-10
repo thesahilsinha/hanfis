@@ -2,7 +2,8 @@
 import { useState, useEffect } from 'react'
 
 export default function AdminSettings() {
-  const [settings, setSettings] = useState({ online_payment_enabled: true, cod_enabled: true, announcement_text: '', whatsapp_number: '917249391385' })
+  const [settings, setSettings] = useState({ online_payment_enabled: true, cod_enabled: true, announcement_text: '', whatsapp_number: '917249391385', maintenance_mode: false, maintenance_message: ''})
+  // maintenance_mode: false,
   const [loading, setLoading] = useState(false)
   const [saved, setSaved] = useState(false)
 
@@ -48,6 +49,36 @@ export default function AdminSettings() {
           style={{ width: '100%', padding: '12px 16px', border: '1.5px solid #e8e8e8', borderRadius: 10, fontSize: 14, outline: 'none' }} />
         <p style={{ fontSize: 12, color: '#888', marginTop: 6 }}>Country code + number, no spaces or + (e.g. 917249391385)</p>
       </div>
+      <div className="admin-form-card" style={{ marginBottom: 20, border: settings.maintenance_mode ? '1.5px solid #c8102e' : '1.5px solid #e8e8e8' }}>
+  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: settings.maintenance_mode ? 16 : 0 }}>
+    <div>
+      <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 4, display: 'flex', alignItems: 'center', gap: 8 }}>
+        🔧 Maintenance Mode
+        {settings.maintenance_mode && <span style={{ background: '#c8102e', color: '#fff', fontSize: 10, fontWeight: 700, padding: '2px 8px', borderRadius: 50 }}>ACTIVE</span>}
+      </div>
+      <div style={{ fontSize: 13, color: '#888' }}>When ON, visitors see a maintenance page. Admin still accessible.</div>
+    </div>
+    <button
+      onClick={() => setSettings(s => ({ ...s, maintenance_mode: !s.maintenance_mode }))}
+      className="toggle-btn"
+      style={{ background: settings.maintenance_mode ? '#c8102e' : '#e8e8e8' }}
+    >
+      <div className="toggle-knob" style={{ left: settings.maintenance_mode ? 26 : 2 }} />
+    </button>
+  </div>
+  {settings.maintenance_mode && (
+    <div>
+      <label className="form-label">Message shown to visitors</label>
+      <textarea
+        className="form-textarea"
+        rows={2}
+        value={settings.maintenance_message}
+        onChange={e => setSettings(s => ({ ...s, maintenance_message: e.target.value }))}
+        placeholder="We'll be back soon..."
+      />
+    </div>
+  )}
+</div>
       <button onClick={save} disabled={loading}
         style={{ width: '100%', padding: 16, background: saved ? '#1a8a4a' : '#0a0a0a', color: '#fff', border: 'none', borderRadius: 14, fontSize: 15, fontWeight: 700, cursor: 'pointer', transition: 'background .3s' }}>
         {saved ? '✓ Settings Saved!' : loading ? 'Saving...' : 'Save Settings'}
