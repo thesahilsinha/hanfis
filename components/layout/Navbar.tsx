@@ -13,7 +13,7 @@ const brands = [
   { name: 'Vivo', emoji: '' },
   { name: 'OPPO', emoji: '' },
   { name: 'Realme', emoji: '' },
-  { name: 'Motorola', emoji: '〽' },
+  { name: 'Motorola', emoji: '' },
   { name: 'Nothing', emoji: '' },
   { name: 'iQOO', emoji: '' },
   { name: 'Nokia', emoji: '' },
