@@ -42,7 +42,7 @@ export default function Navbar() {
   const [mobileBrandOpen, setMobileBrandOpen] = useState(false)
   const [search, setSearch] = useState('')
   const count = useCart(s => s.count())
-  const brandRef = useRef<HTMLDivElement>(null)
+  const brandRef = useRef<HTMLLIElement>(null)
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 10)
