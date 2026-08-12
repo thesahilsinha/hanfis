@@ -252,7 +252,7 @@ export default function Navbar() {
           <div style={{ marginBottom: 8 }}>
             <button
               onClick={() => setMobileBrandOpen(!mobileBrandOpen)}
-              style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '16px 0', borderBottom: '1px solid #f4f4f4', fontSize: 16, fontWeight: 600, color: '#0a0a0a', background: 'none', border: 'none', borderBottom: '1px solid #f4f4f4', cursor: 'pointer', fontFamily: 'inherit' }}
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '16px 0', fontSize: 16, fontWeight: 600, color: '#0a0a0a', background: 'none', border: 'none', borderBottom: '1px solid #f4f4f4', cursor: 'pointer', fontFamily: 'inherit' }}
             >
               <span>Brands</span>
               <ChevronDown size={18} style={{ transform: mobileBrandOpen ? 'rotate(180deg)' : 'none', transition: 'transform .2s', color: '#888' }} />
