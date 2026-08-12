@@ -79,8 +79,7 @@ export default function Navbar() {
         .brand-dropdown {
           position: absolute;
           top: calc(100% + 8px);
-          left: 50%;
-          transform: translateX(-50%);
+          left: 0;
           background: #fff;
           border: 1.5px solid #e8e8e8;
           border-radius: 16px;
@@ -94,8 +93,8 @@ export default function Navbar() {
           animation: dropIn .18s ease;
         }
         @keyframes dropIn {
-          from { opacity: 0; transform: translateX(-50%) translateY(-8px); }
-          to { opacity: 1; transform: translateX(-50%) translateY(0); }
+          from { opacity: 0; transform: translateY(-8px); }
+          to { opacity: 1; transform: translateY(0); }
         }
         .brand-item {
           display: flex;
