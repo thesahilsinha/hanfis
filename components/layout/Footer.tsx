@@ -53,7 +53,7 @@ export default function Footer() {
             {[
               { icon: '📞', text: '+91 72493 91385', href: 'tel:+917249391385' },
               { icon: '💬', text: 'WhatsApp Us', href: 'https://wa.me/917249391385' },
-              { icon: '📧', text: 'hello@hanfiscollection.com', href: 'mailto:hello@hanfiscollection.com' },
+              { icon: '📧', text: 'hanfiscollectionweb@gmail.com', href: 'mailto:hanfiscollectionweb@gmail.com' },
               { icon: '📍', text: 'Multiple locations, Marathwada', href: '/branches' },
               { icon: '🕐', text: '10 AM – 9 PM, All days', href: '#' },
             ].map(c => (
