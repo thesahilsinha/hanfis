@@ -2,23 +2,51 @@ export const revalidate = 0
 import { createAdminSupabase } from '@/lib/supabase-server'
 import { formatPrice } from '@/lib/utils'
 import Link from 'next/link'
-import type { Product } from '@/types'
+import ProductsPagination from '@/components/product/ProductsPagination'
 
-export default async function AdminAccessories() {
+const PAGE_SIZE = 30
+
+export default async function AdminAccessories({ searchParams }: { searchParams: Promise<any> }) {
   const supabase = createAdminSupabase()
-  const { data: accessories } = await supabase
+  const sp = await searchParams
+  const page = parseInt(sp.page || '1')
+  const from = (page - 1) * PAGE_SIZE
+  const to = from + PAGE_SIZE - 1
+
+  let query = supabase
     .from('products')
-    .select('*')
+    .select('*', { count: 'exact' })
     .eq('category', 'Accessory')
+
+  if (sp.q) query = query.ilike('name', `%${sp.q}%`)
+
+  const { data: accessories, count } = await query
     .order('created_at', { ascending: false })
+    .range(from, to)
+
+  const totalPages = Math.ceil((count || 0) / PAGE_SIZE)
+  const params = new URLSearchParams()
+  if (sp.q) params.set('q', sp.q)
 
   return (
     <div style={{ padding: '24px 20px' }}>
       <div className="page-header">
-        <h1 className="page-title">Accessories ({accessories?.length || 0})</h1>
+        <h1 className="page-title">Accessories ({count || 0})</h1>
         <Link href="/admin/accessories/new" className="btn-primary">+ Add Accessory</Link>
       </div>
+
+      <div style={{ display: 'flex', gap: 10, marginBottom: 20 }}>
+        <form style={{ display: 'flex', gap: 8, flex: 1 }}>
+          <input name="q" defaultValue={sp.q || ''} placeholder="Search accessories..." className="form-input" style={{ flex: 1 }} />
+          <button type="submit" className="btn-primary" style={{ padding: '11px 20px' }}>Search</button>
+          {sp.q && <Link href="/admin/accessories" className="btn-danger" style={{ padding: '11px 16px', display: 'flex', alignItems: 'center' }}>✕</Link>}
+        </form>
+      </div>
+
       <div className="admin-table-wrap">
+        <div style={{ padding: '14px 20px', borderBottom: '1px solid #e8e8e8', fontSize: 13, color: '#888' }}>
+          Showing {from + 1}–{Math.min(to + 1, count || 0)} of {count || 0} accessories
+        </div>
         <div className="admin-table-scroll">
           <table className="admin-table">
             <thead>
@@ -29,11 +57,9 @@ export default async function AdminAccessories() {
                 <tr key={p.id}>
                   <td>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                      <img src={p.images?.[0] || '/images/phone-placeholder.png'} alt={p.name} style={{ width: 40, height: 40, objectFit: 'contain', background: '#f9f9f9', borderRadius: 8, padding: 4, flexShrink: 0 }} />
-                      <div>
-                        <div style={{ fontSize: 13, fontWeight: 600 }}>{p.name}</div>
-                        <div style={{ fontSize: 11, color: '#888' }}>{p.slug}</div>
-                      </div>
+                      <img src={p.images?.[0] || '/images/phone-placeholder.png'} alt={p.name}
+                        style={{ width: 40, height: 40, objectFit: 'contain', background: '#f9f9f9', borderRadius: 8, padding: 4, flexShrink: 0 }} />
+                      <div style={{ fontSize: 13, fontWeight: 600 }}>{p.name}</div>
                     </div>
                   </td>
                   <td>{p.brand}</td>
@@ -47,10 +73,9 @@ export default async function AdminAccessories() {
             </tbody>
           </table>
         </div>
-        {!accessories?.length && (
-          <div style={{ padding: '48px 24px', textAlign: 'center', color: '#888' }}>No accessories yet. Add your first one!</div>
-        )}
       </div>
+
+      <ProductsPagination currentPage={page} totalPages={totalPages} baseParams={params.toString()} basePath="/admin/accessories" />
     </div>
   )
 }

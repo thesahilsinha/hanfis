@@ -380,6 +380,21 @@ button { font-family: inherit; }
 .product-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 80px; }
 .product-detail-related { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 
+
+
+
+/* ── PAGINATION ── */
+.pagination-wrap { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 48px; flex-wrap: wrap; }
+.page-btn { display: flex; align-items: center; justify-content: center; min-width: 38px; height: 38px; padding: 0 12px; border-radius: 10px; border: 1.5px solid #e8e8e8; font-size: 13px; font-weight: 700; text-decoration: none; background: #fff; color: #0a0a0a; transition: all .2s; }
+.page-btn:hover { border-color: #0a0a0a; background: #0a0a0a; color: #fff; }
+.page-btn.active { border-color: #0a0a0a; background: #0a0a0a; color: #fff; }
+.page-btn.disabled { color: #ccc; border-color: #f4f4f4; background: #fafafa; pointer-events: none; }
+
+@media (max-width: 768px) {
+  .pagination-wrap { gap: 4px; margin-top: 32px; }
+  .page-btn { min-width: 34px; height: 34px; font-size: 12px; }
+}
+
 @media (max-width: 768px) {
   .product-detail-grid { grid-template-columns: 1fr !important; gap: 24px !important; margin-bottom: 40px !important; }
   .product-detail-related { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
@@ -492,6 +507,7 @@ button { font-family: inherit; }
   .cat-pill { padding: 6px 10px !important; }
   .cat-pill span { font-size: 10px !important; }
 }
+
 
 /* ================================================================
    ADMIN MOBILE FIXES
