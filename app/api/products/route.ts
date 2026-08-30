@@ -8,6 +8,10 @@ export async function GET(req: NextRequest) {
   if (searchParams.get('brand')) query = query.eq('brand', searchParams.get('brand')!)
   if (searchParams.get('featured')) query = query.eq('featured', true)
   if (searchParams.get('in_stock')) query = query.eq('in_stock', true)
+  if (searchParams.get('q')) {
+    const q = searchParams.get('q')!
+    query = query.or(`name.ilike.%${q}%,brand.ilike.%${q}%,description.ilike.%${q}%`)
+  }
   const { data, error } = await query.order('created_at', { ascending: false })
   if (error) return NextResponse.json({ error }, { status: 500 })
   return NextResponse.json(data)

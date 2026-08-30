@@ -22,7 +22,7 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
   if (sp.brand) query = query.eq('brand', sp.brand)
   if (sp.badge) query = query.eq('badge', sp.badge)
   if (sp.max) query = query.lte('price', parseInt(sp.max))
-  if (sp.q) query = query.ilike('name', `%${sp.q}%`)
+  if (sp.q) query = query.or(`name.ilike.%${sp.q}%,brand.ilike.%${sp.q}%,description.ilike.%${sp.q}%`)
 
   const { data: products, count } = await query
     .order('created_at', { ascending: false })
