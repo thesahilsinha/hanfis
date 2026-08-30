@@ -18,7 +18,7 @@ export default async function Hero() {
       <div className="hero-overlay" />
       <div className="hero-inner">
         <div>
-          <div className="hero-eyebrow">✦ New Arrivals 2025</div>
+          <div className="hero-eyebrow">✦ New Arrivals 2026</div>
           <h1 className="hero-title">Marathwada's<br /><em>Premium</em><br />Phone Store</h1>
           <p className="hero-desc">2000+ phones in stock. No Cost EMI. Official warranty. Certified refurbished devices. Same-day delivery across Marathwada.</p>
           <div className="hero-ctas">
@@ -38,7 +38,7 @@ export default async function Hero() {
         <div className="hero-right" style={{ position: 'relative', borderRadius: 24, overflow: 'hidden', minHeight: 420 }}>
           <div style={{
             position: 'absolute', inset: 0,
-            backgroundImage: 'url(https://contentstatic.techgig.com/thumb/msid-108136370,width-800,resizemode-4/Best-smartphones-under-Rs-8000-check-specs-inside.jpg?44244)',
+            backgroundImage: 'url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwBoK0Tr_Uq390zdH6fhmFueusWOc_QvfeheBP4S6xT2etD5YVqi1vkHk&s=10)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }} />
