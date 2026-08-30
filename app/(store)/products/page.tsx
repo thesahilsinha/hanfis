@@ -17,7 +17,8 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
     .from('products')
     .select('*', { count: 'exact' })
     .eq('in_stock', true)
-    .neq('category', 'Accessory')
+
+  if (!sp.q) query = query.neq('category', 'Accessory')
 
   if (sp.brand) query = query.eq('brand', sp.brand)
   if (sp.badge) query = query.eq('badge', sp.badge)
@@ -30,7 +31,6 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
 
   const totalPages = Math.ceil((count || 0) / PAGE_SIZE)
 
-  // Build current URL params for pagination links
   const params = new URLSearchParams()
   if (sp.brand) params.set('brand', sp.brand)
   if (sp.badge) params.set('badge', sp.badge)
@@ -44,14 +44,14 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
           {sp.brand ? `${sp.brand} Phones` : sp.q ? `Results for "${sp.q}"` : 'All Phones'}
         </h1>
         <p style={{ color: '#888', fontSize: 14 }}>
-          {count || 0} phones found
+          {count || 0} {sp.q ? 'results' : 'phones'} found
           {totalPages > 1 && ` · Page ${page} of ${totalPages}`}
         </p>
       </div>
 
       {!products?.length ? (
         <div style={{ textAlign: 'center', padding: '80px 0', color: '#888' }}>
-          No phones found. Try a different search.
+          No results found. Try a different search.
         </div>
       ) : (
         <>

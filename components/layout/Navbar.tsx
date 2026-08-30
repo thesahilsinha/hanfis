@@ -67,11 +67,11 @@ export default function Navbar() {
   }, [])
 
   function doSearch() {
-    if (search.trim()) {
-      window.location.href = `/products?q=${search}`
-      setSearchOpen(false)
-    }
+  if (search.trim()) {
+    window.location.href = `/products?q=${encodeURIComponent(search.trim())}`
+    setSearchOpen(false)
   }
+}
 
   return (
     <>
