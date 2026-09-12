@@ -11,10 +11,12 @@ const links = [
   { href: '/admin/orders', label: 'Orders', icon: '📦' },
   { href: '/admin/used-phones', label: 'Used Phones', icon: '♻️' },
   { href: '/admin/branches', label: 'Branches', icon: '🏪' },
+  { href: '/admin/analytics', label: 'Analytics', icon: '📊' },
   { href: '/admin/gallery', label: 'Gallery', icon: '🖼️' },
   { href: '/admin/blog', label: 'Blog', icon: '📝' },
   { href: '/admin/coupons', label: 'Coupons', icon: '🎟️' },
   { href: '/admin/settings', label: 'Settings', icon: '⚙️' },
+
 ]
 
 

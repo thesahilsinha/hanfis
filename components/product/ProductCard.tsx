@@ -47,6 +47,12 @@ export default function ProductCard({ product }: { product: Product }) {
               quantity: 1,
               slug: product.slug
             })
+            // Track event
+            fetch('/api/analytics', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ event: 'add_to_cart', product_id: product.id, product_name: product.name })
+            }).catch(() => {})
           }}
         >
           Add to Cart

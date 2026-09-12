@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useCart } from '@/hooks/useCart'
 import { formatPrice, formatDiscount, getWhatsAppLink } from '@/lib/utils'
@@ -16,6 +16,19 @@ export default function ProductDetail({ product, related, variants }: {
   const addItem = useCart(s => s.addItem)
   const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210'
   const waLink = getWhatsAppLink(waNumber, `Hi! I want to buy ${product.name} (₹${product.price.toLocaleString('en-IN')}). Is it available?`)
+
+  useEffect(() => {
+    fetch('/api/analytics', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        event: 'product_view',
+        product_id: product.id,
+        product_name: product.name,
+        page: window.location.pathname,
+      })
+    }).catch(() => {})
+  }, [product.id])
 
   // Group variants by RAM+Storage combos
   const storageVariants = variants?.filter(v => v.id !== product.id) || []

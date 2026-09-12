@@ -45,6 +45,17 @@ export default function CheckoutPage() {
     check()
   }, [])
 
+  // Track checkout start
+  useEffect(() => {
+    if (items.length > 0) {
+      fetch('/api/analytics', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ event: 'checkout_start', page: '/checkout', metadata: { total: finalTotal, items: items.length } })
+      }).catch(() => {})
+    }
+  }, [])
+
   async function validateCoupon() {
     if (!form.coupon.trim()) return
     const res = await fetch('/api/coupons/validate', {
