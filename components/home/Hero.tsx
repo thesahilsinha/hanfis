@@ -1,16 +1,9 @@
-// "use client"
 import Link from 'next/link'
-import { createAdminSupabase } from '@/lib/supabase-server'
+import { getTopProducts } from '@/lib/cache'
 import { formatPrice } from '@/lib/utils'
 
 export default async function Hero() {
-  const supabase = createAdminSupabase()
-  const { data: topProducts } = await supabase
-    .from('products')
-    .select('*')
-    .eq('in_stock', true)
-    .order('price', { ascending: false })
-    .limit(3)
+  const topProducts = await getTopProducts()
 
   return (
     <section className="hero">
@@ -22,8 +15,8 @@ export default async function Hero() {
           <h1 className="hero-title">Marathwada's<br /><em>Premium</em><br />Phone Store</h1>
           <p className="hero-desc">2000+ phones in stock. No Cost EMI. Official warranty. Certified refurbished devices. Same-day delivery across Marathwada.</p>
           <div className="hero-ctas">
-            <Link href="/products" className="btn-hero-primary">Shop Now →</Link>
-            <Link href="/sell-phone" className="btn-hero-secondary">Sell Your Phone</Link>
+            <Link href="/products" prefetch={false} className="btn-hero-primary">Shop Now →</Link>
+            <Link href="/sell-phone" prefetch={false} className="btn-hero-secondary">Sell Your Phone</Link>
           </div>
           <div className="hero-stats">
             {[['2000+', 'Phones in Stock'], ['50K+', 'Happy Customers'], ['15+', 'Years Experience'], ['4.9★', 'Google Rating']].map(([n, l]) => (
@@ -47,10 +40,10 @@ export default async function Hero() {
             background: 'linear-gradient(135deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 100%)',
           }} />
           <div style={{ position: 'relative', zIndex: 2, padding: 24, display: 'flex', flexDirection: 'column', gap: 16, justifyContent: 'center', height: '100%' }}>
-            {topProducts && topProducts.length > 0 ? topProducts.map(p => {
+            {topProducts && topProducts.length > 0 ? topProducts.map((p: any) => {
               const discount = p.old_price ? Math.round(((p.old_price - p.price) / p.old_price) * 100) : null
               return (
-                <Link href={`/products/${p.slug}`} key={p.id} className="hero-card" style={{ textDecoration: 'none' }}>
+                <Link href={`/products/${p.slug}`} prefetch={false} key={p.id} className="hero-card" style={{ textDecoration: 'none' }}>
                   <img
                     src={p.images?.[0] || '/images/phone-placeholder.png'}
                     alt={p.name}
@@ -74,7 +67,6 @@ export default async function Hero() {
                 </Link>
               )
             }) : (
-              // Fallback if no products in DB yet
               <div style={{ textAlign: 'center', color: 'rgba(255,255,255,0.5)', fontSize: 14, padding: 40 }}>
                 Add products to see them here
               </div>

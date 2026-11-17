@@ -1,4 +1,4 @@
-export const revalidate = 0
+export const revalidate = 300
 import { createAdminSupabase } from '@/lib/supabase-server'
 import ProductDetail from '@/components/product/ProductDetail'
 import { notFound } from 'next/navigation'

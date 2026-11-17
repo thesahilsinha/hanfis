@@ -15,45 +15,44 @@ export default function ProductDetail({ product, related, variants }: {
   const router = useRouter()
   const addItem = useCart(s => s.addItem)
   const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210'
-  const waLink = getWhatsAppLink(waNumber, `Hi! I want to buy ${product.name} (₹${product.price.toLocaleString('en-IN')}). Is it available?`)
+  const waLink = getWhatsAppLink(waNumber, `Hi! I want to buy ${product.name} (Rs ${product.price.toLocaleString('en-IN')}). Is it available?`)
 
+  // Count a product view once per product per visitor session
   useEffect(() => {
-    fetch('/api/analytics', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        event: 'product_view',
-        product_id: product.id,
-        product_name: product.name,
-        page: window.location.pathname,
-      })
-    }).catch(() => {})
+    const k = 'pv_' + product.id
+    if (sessionStorage.getItem(k)) return
+    sessionStorage.setItem(k, '1')
+    navigator.sendBeacon('/api/analytics', new Blob([JSON.stringify({
+      event: 'product_view', product_id: product.id, product_name: product.name,
+    })], { type: 'application/json' }))
   }, [product.id])
 
-  // Group variants by RAM+Storage combos
-  const storageVariants = variants?.filter(v => v.id !== product.id) || []
+  const parseNum = (s?: string) => parseInt((s || '').replace(/[^0-9]/g, '') || '0')
 
-  // Get unique storage options
   const uniqueStorages = variants
-    ? [...new Map(variants.map(v => [v.storage, v])).values()].sort((a, b) => {
-        const parse = (s: string) => parseInt(s?.replace(/[^0-9]/g, '') || '0')
-        return parse(a.storage) - parse(b.storage)
-      })
+    ? [...new Map(variants.filter(v => v.storage).map(v => [v.storage, v])).values()].sort((a, b) => parseNum(a.storage) - parseNum(b.storage))
     : []
 
-  // Get unique RAM options
   const uniqueRAMs = variants
-    ? [...new Map(variants.map(v => [v.ram, v])).values()].sort((a, b) => {
-        const parse = (s: string) => parseInt(s?.replace(/[^0-9]/g, '') || '0')
-        return parse(a.ram) - parse(b.ram)
-      })
+    ? [...new Map(variants.filter(v => v.ram).map(v => [v.ram, v])).values()].sort((a, b) => parseNum(a.ram) - parseNum(b.ram))
     : []
+
+  const optionStyle = (active: boolean) => ({
+    padding: '8px 16px',
+    borderRadius: 10,
+    border: `2px solid ${active ? '#0a0a0a' : '#e8e8e8'}`,
+    background: active ? '#0a0a0a' : '#fff',
+    color: active ? '#fff' : '#0a0a0a',
+    fontSize: 13,
+    fontWeight: 700,
+    cursor: 'pointer',
+    fontFamily: 'inherit',
+  })
 
   return (
     <div style={{ maxWidth: 1400, margin: '0 auto', padding: '32px 16px 64px' }}>
       <div className="product-detail-grid">
 
-        {/* LEFT — Images */}
         <div>
           <div style={{ background: '#f9f9f9', borderRadius: 20, height: 380, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16, overflow: 'hidden' }}>
             <img
@@ -74,7 +73,6 @@ export default function ProductDetail({ product, related, variants }: {
           )}
         </div>
 
-        {/* RIGHT — Details */}
         <div>
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: '#888', marginBottom: 8 }}>{product.brand}</div>
           <h1 style={{ fontSize: 'clamp(20px,4vw,30px)', fontWeight: 800, marginBottom: 16, lineHeight: 1.2 }}>{product.name}</h1>
@@ -95,7 +93,6 @@ export default function ProductDetail({ product, related, variants }: {
             </div>
           )}
 
-          {/* RAM SELECTOR */}
           {uniqueRAMs.length > 1 && (
             <div style={{ marginBottom: 16 }}>
               <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 8 }}>
@@ -103,21 +100,7 @@ export default function ProductDetail({ product, related, variants }: {
               </div>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                 {uniqueRAMs.map(v => (
-                  <button
-                    key={v.id}
-                    onClick={() => router.push(`/products/${v.slug}`)}
-                    style={{
-                      padding: '8px 16px',
-                      borderRadius: 10,
-                      border: `2px solid ${v.ram === product.ram ? '#0a0a0a' : '#e8e8e8'}`,
-                      background: v.ram === product.ram ? '#0a0a0a' : '#fff',
-                      color: v.ram === product.ram ? '#fff' : '#0a0a0a',
-                      fontSize: 13,
-                      fontWeight: 700,
-                      cursor: 'pointer',
-                      fontFamily: 'inherit',
-                      transition: 'all .2s'
-                    }}>
+                  <button key={v.id} onClick={() => router.push(`/products/${v.slug}`)} style={optionStyle(v.ram === product.ram)}>
                     {v.ram}
                   </button>
                 ))}
@@ -125,7 +108,6 @@ export default function ProductDetail({ product, related, variants }: {
             </div>
           )}
 
-          {/* STORAGE SELECTOR */}
           {uniqueStorages.length > 1 && (
             <div style={{ marginBottom: 20 }}>
               <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 8 }}>
@@ -133,21 +115,7 @@ export default function ProductDetail({ product, related, variants }: {
               </div>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                 {uniqueStorages.map(v => (
-                  <button
-                    key={v.id}
-                    onClick={() => router.push(`/products/${v.slug}`)}
-                    style={{
-                      padding: '8px 16px',
-                      borderRadius: 10,
-                      border: `2px solid ${v.storage === product.storage ? '#0a0a0a' : '#e8e8e8'}`,
-                      background: v.storage === product.storage ? '#0a0a0a' : '#fff',
-                      color: v.storage === product.storage ? '#fff' : '#0a0a0a',
-                      fontSize: 13,
-                      fontWeight: 700,
-                      cursor: 'pointer',
-                      fontFamily: 'inherit',
-                      transition: 'all .2s'
-                    }}>
+                  <button key={v.id} onClick={() => router.push(`/products/${v.slug}`)} style={optionStyle(v.storage === product.storage)}>
                     {v.storage}
                     <div style={{ fontSize: 10, opacity: 0.7, marginTop: 1 }}>{formatPrice(v.price)}</div>
                   </button>
@@ -160,11 +128,10 @@ export default function ProductDetail({ product, related, variants }: {
             <p style={{ fontSize: 14, color: '#4a4a4a', lineHeight: 1.7, marginBottom: 24 }}>{product.description}</p>
           )}
 
-          {Object.keys(product.specs || {}).length > 0 && (
+          {(product.ram || product.storage || Object.keys(product.specs || {}).length > 0) && (
             <div style={{ marginBottom: 24 }}>
               <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 12 }}>Key Specs</div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
-                {/* Show RAM and Storage from columns first */}
                 {product.ram && (
                   <div style={{ background: '#f9f9f9', borderRadius: 10, padding: '10px 14px' }}>
                     <div style={{ fontSize: 10, fontWeight: 600, color: '#888', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 2 }}>RAM</div>
@@ -177,7 +144,7 @@ export default function ProductDetail({ product, related, variants }: {
                     <div style={{ fontSize: 13, fontWeight: 600 }}>{product.storage}</div>
                   </div>
                 )}
-                {Object.entries(product.specs)
+                {Object.entries(product.specs || {})
                   .filter(([k]) => !['RAM', 'Storage', 'ram', 'storage'].includes(k))
                   .map(([k, v]) => (
                     <div key={k} style={{ background: '#f9f9f9', borderRadius: 10, padding: '10px 14px' }}>
@@ -194,19 +161,19 @@ export default function ProductDetail({ product, related, variants }: {
               onClick={() => addItem({
                 id: product.id, name: product.name, brand: product.brand,
                 price: product.price, image: product.images?.[0] || '',
-                quantity: 1, slug: product.slug
+                quantity: 1, slug: product.slug,
               })}
               style={{ flex: 1, padding: 14, background: '#0a0a0a', color: '#fff', border: 'none', borderRadius: 12, fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>
               Add to Cart
             </button>
             <a href={waLink} target="_blank" rel="noreferrer"
-              style={{ padding: '14px 18px', background: '#25d366', color: '#fff', border: 'none', borderRadius: 12, fontSize: 14, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6, textDecoration: 'none', whiteSpace: 'nowrap' }}>
+              style={{ padding: '14px 18px', background: '#25d366', color: '#fff', borderRadius: 12, fontSize: 14, fontWeight: 700, display: 'flex', alignItems: 'center', textDecoration: 'none', whiteSpace: 'nowrap' }}>
               WhatsApp
             </a>
           </div>
 
           <div style={{ display: 'flex', gap: 16, marginTop: 16, flexWrap: 'wrap' }}>
-            {['✅ Official Warranty', '🚚 Same Day Delivery', '↩️ 7-Day Returns', '🔒 Secure Payment'].map(b => (
+            {['Official Warranty', 'Same Day Delivery', '7-Day Returns', 'Secure Payment'].map(b => (
               <span key={b} style={{ fontSize: 11, color: '#888' }}>{b}</span>
             ))}
           </div>

@@ -5,31 +5,16 @@ import { ShoppingCart, Search, MapPin, Phone, Menu, X, ChevronDown } from 'lucid
 import { useCart } from '@/hooks/useCart'
 import CartDrawer from '@/components/cart/CartDrawer'
 
-const brands = [
-  { name: 'Apple', emoji: '' },
-  { name: 'Samsung', emoji: '' },
-  { name: 'OnePlus', emoji: '' },
-  { name: 'Xiaomi', emoji: '' },
-  { name: 'Vivo', emoji: '' },
-  { name: 'OPPO', emoji: '' },
-  { name: 'Realme', emoji: '' },
-  { name: 'Motorola', emoji: '' },
-  { name: 'Nothing', emoji: '' },
-  { name: 'iQOO', emoji: '' },
-  { name: 'Nokia', emoji: '' },
-  { name: 'Google', emoji: '' },
-  { name: 'Infinix', emoji: '' },
-  { name: 'Poco', emoji: '' },
-]
+const brands = ['Apple', 'Samsung', 'OnePlus', 'Xiaomi', 'Vivo', 'OPPO', 'Realme', 'Motorola', 'Nothing', 'iQOO', 'Nokia', 'Google', 'Infinix', 'Poco']
 
 const cats = [
-  { label: 'All Phones', href: '/products' },
-  { label: 'Accessories', href: '/accessories' },
-  { label: 'Buy Used', href: '/buy-used' },
-  { label: 'Sell Phone', href: '/sell-phone' },
-  { label: 'Branches', href: '/branches' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Track Order', href: '/orders' },
+  { label: 'All Phones', href: '/products', sale: false },
+  { label: 'Accessories', href: '/accessories', sale: false },
+  { label: 'Buy Used', href: '/buy-used', sale: false },
+  { label: 'Sell Phone', href: '/sell-phone', sale: false },
+  { label: 'Branches', href: '/branches', sale: false },
+  { label: 'Blog', href: '/blog', sale: false },
+  { label: 'Track Order', href: '/orders', sale: false },
   { label: 'Deals', href: '/products?badge=sale', sale: true },
 ]
 
@@ -55,106 +40,37 @@ export default function Navbar() {
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
-  // Close dropdown on outside click
   useEffect(() => {
     function handleClick(e: MouseEvent) {
-      if (brandRef.current && !brandRef.current.contains(e.target as Node)) {
-        setBrandOpen(false)
-      }
+      if (brandRef.current && !brandRef.current.contains(e.target as Node)) setBrandOpen(false)
     }
     document.addEventListener('mousedown', handleClick)
     return () => document.removeEventListener('mousedown', handleClick)
   }, [])
 
   function doSearch() {
-  if (search.trim()) {
-    window.location.href = `/products?q=${encodeURIComponent(search.trim())}`
-    setSearchOpen(false)
+    if (search.trim()) {
+      window.location.href = `/products?q=${encodeURIComponent(search.trim())}`
+      setSearchOpen(false)
+    }
   }
-}
 
   return (
     <>
       <style>{`
-        .brand-dropdown {
-          position: absolute;
-          top: calc(100% + 8px);
-          left: 0;
-          background: #fff;
-          border: 1.5px solid #e8e8e8;
-          border-radius: 16px;
-          box-shadow: 0 16px 48px rgba(0,0,0,0.12);
-          padding: 12px;
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 4px;
-          min-width: 340px;
-          z-index: 9999;
-          animation: dropIn .18s ease;
-        }
-        @keyframes dropIn {
-          from { opacity: 0; transform: translateY(-8px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .brand-item {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 4px;
-          padding: 10px 8px;
-          border-radius: 10px;
-          text-decoration: none;
-          color: #0a0a0a;
-          font-size: 12px;
-          font-weight: 600;
-          transition: all .15s;
-          cursor: pointer;
-          border: none;
-          background: none;
-          font-family: inherit;
-        }
-        .brand-item:hover {
-          background: #f4f4f4;
-          color: #c8102e;
-        }
-        .brand-item-emoji {
-          font-size: 20px;
-          line-height: 1;
-        }
-        .brand-trigger {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-          padding: 11px 16px;
-          font-size: 13px;
-          font-weight: 500;
-          color: #4a4a4a;
-          border-bottom: 2px solid transparent;
-          transition: all .15s;
-          white-space: nowrap;
-          cursor: pointer;
-          background: none;
-          border-top: none;
-          border-left: none;
-          border-right: none;
-          font-family: inherit;
-        }
-        .brand-trigger:hover, .brand-trigger.open {
-          color: #0a0a0a;
-          border-bottom-color: #0a0a0a;
-        }
-        .brand-trigger svg {
-          transition: transform .2s;
-        }
-        .brand-trigger.open svg {
-          transform: rotate(180deg);
-        }
+        .brand-dropdown { position: absolute; top: calc(100% + 8px); left: 0; background: #fff; border: 1.5px solid #e8e8e8; border-radius: 16px; box-shadow: 0 16px 48px rgba(0,0,0,0.12); padding: 12px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; min-width: 320px; z-index: 9999; }
+        .brand-item { display: flex; align-items: center; justify-content: center; padding: 10px 8px; border-radius: 10px; text-decoration: none; color: #0a0a0a; font-size: 13px; font-weight: 600; transition: all .15s; }
+        .brand-item:hover { background: #f4f4f4; color: #c8102e; }
+        .brand-trigger { display: flex; align-items: center; gap: 4px; padding: 11px 16px; font-size: 13px; font-weight: 500; color: #4a4a4a; border: none; border-bottom: 2px solid transparent; background: none; cursor: pointer; font-family: inherit; white-space: nowrap; }
+        .brand-trigger:hover, .brand-trigger.open { color: #0a0a0a; border-bottom-color: #0a0a0a; }
+        .brand-trigger svg { transition: transform .2s; }
+        .brand-trigger.open svg { transform: rotate(180deg); }
       `}</style>
 
       <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
         <div className="nav-top">
           <div className="nav-logo">
-            <Link href="/"><img src="/logo.jpg" alt="Hanfi's Collection" /></Link>
+            <Link href="/" prefetch={false}><img src="/logo.jpg" alt="Hanfi's Collection" /></Link>
           </div>
           <div className="nav-search">
             <input
@@ -166,8 +82,8 @@ export default function Navbar() {
             <Search size={16} className="nav-search-icon" />
           </div>
           <div className="nav-actions">
-            <Link href="/branches" className="nav-link"><MapPin size={18} /> Branches</Link>
-            <Link href="/orders" className="nav-link"><span>📦</span> Track</Link>
+            <Link href="/branches" prefetch={false} className="nav-link"><MapPin size={18} /> Branches</Link>
+            <Link href="/orders" prefetch={false} className="nav-link">Track</Link>
             <a href="tel:+919876543210" className="nav-link"><Phone size={18} /> Call Us</a>
             <button className="nav-cart" onClick={() => setCartOpen(true)}>
               <ShoppingCart size={16} />
@@ -183,7 +99,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile search bar */}
         <div className={`mobile-search-bar${searchOpen ? ' open' : ''}`}>
           <div style={{ position: 'relative' }}>
             <input
@@ -197,90 +112,58 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Desktop category bar */}
         <nav className="nav-cats">
           <ul className="nav-cats-inner">
-            {/* Brands dropdown */}
             <li style={{ position: 'relative' }} ref={brandRef}>
-              <button
-                className={`brand-trigger${brandOpen ? ' open' : ''}`}
-                onClick={() => setBrandOpen(!brandOpen)}
-              >
+              <button className={`brand-trigger${brandOpen ? ' open' : ''}`} onClick={() => setBrandOpen(!brandOpen)}>
                 Brands <ChevronDown size={13} />
               </button>
               {brandOpen && (
                 <div className="brand-dropdown">
                   {brands.map(b => (
-                    <Link
-                      key={b.name}
-                      href={`/products?brand=${b.name}`}
-                      className="brand-item"
-                      onClick={() => setBrandOpen(false)}
-                    >
-                      <span className="brand-item-emoji">{b.emoji}</span>
-                      <span>{b.name}</span>
+                    <Link key={b} href={`/products?brand=${b}`} prefetch={false} className="brand-item" onClick={() => setBrandOpen(false)}>
+                      {b}
                     </Link>
                   ))}
-                  <Link
-                    href="/products"
-                    className="brand-item"
-                    onClick={() => setBrandOpen(false)}
-                    style={{ gridColumn: '1 / -1', flexDirection: 'row', gap: 6, justifyContent: 'center', background: '#f9f9f9', marginTop: 4 }}
-                  >
-                    <span>📱</span>
-                    <span>View All Phones</span>
+                  <Link href="/products" prefetch={false} className="brand-item" onClick={() => setBrandOpen(false)}
+                    style={{ gridColumn: '1 / -1', background: '#f9f9f9', marginTop: 4 }}>
+                    View All Phones
                   </Link>
                 </div>
               )}
             </li>
-
             {cats.map(c => (
               <li key={c.href}>
-                <Link href={c.href} className={c.sale ? 'sale' : ''}>{c.label}</Link>
+                <Link href={c.href} prefetch={false} className={c.sale ? 'sale' : ''}>{c.label}</Link>
               </li>
             ))}
           </ul>
         </nav>
       </nav>
 
-      {/* Mobile menu */}
       <div className={`mobile-menu${menuOpen ? ' open' : ''}`}>
         <div className="mobile-menu-inner">
+          <button
+            onClick={() => setMobileBrandOpen(!mobileBrandOpen)}
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '16px 0', fontSize: 16, fontWeight: 600, color: '#0a0a0a', background: 'none', border: 'none', borderBottom: '1px solid #f4f4f4', cursor: 'pointer', fontFamily: 'inherit' }}
+          >
+            <span>Brands</span>
+            <ChevronDown size={18} style={{ transform: mobileBrandOpen ? 'rotate(180deg)' : 'none', transition: 'transform .2s', color: '#888' }} />
+          </button>
+          {mobileBrandOpen && (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8, padding: '12px 0', borderBottom: '1px solid #f4f4f4' }}>
+              {brands.map(b => (
+                <Link key={b} href={`/products?brand=${b}`} prefetch={false} onClick={() => setMenuOpen(false)}
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '12px 8px', borderRadius: 10, background: '#f9f9f9', textDecoration: 'none', color: '#0a0a0a', fontSize: 12, fontWeight: 600 }}>
+                  {b}
+                </Link>
+              ))}
+            </div>
+          )}
 
-          {/* Brands section */}
-          <div style={{ marginBottom: 8 }}>
-            <button
-              onClick={() => setMobileBrandOpen(!mobileBrandOpen)}
-              style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '16px 0', fontSize: 16, fontWeight: 600, color: '#0a0a0a', background: 'none', border: 'none', borderBottom: '1px solid #f4f4f4', cursor: 'pointer', fontFamily: 'inherit' }}
-            >
-              <span>Brands</span>
-              <ChevronDown size={18} style={{ transform: mobileBrandOpen ? 'rotate(180deg)' : 'none', transition: 'transform .2s', color: '#888' }} />
-            </button>
-            {mobileBrandOpen && (
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8, padding: '12px 0', borderBottom: '1px solid #f4f4f4' }}>
-                {brands.map(b => (
-                  <Link
-                    key={b.name}
-                    href={`/products?brand=${b.name}`}
-                    onClick={() => setMenuOpen(false)}
-                    style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, padding: '10px 8px', borderRadius: 10, background: '#f9f9f9', textDecoration: 'none', color: '#0a0a0a' }}
-                  >
-                    <span style={{ fontSize: 22 }}>{b.emoji}</span>
-                    <span style={{ fontSize: 11, fontWeight: 600 }}>{b.name}</span>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <div className="mobile-menu-label" style={{ marginTop: 8 }}>Menu</div>
+          <div className="mobile-menu-label" style={{ marginTop: 16 }}>Menu</div>
           {cats.map(c => (
-            <Link
-              key={c.href}
-              href={c.href}
-              className={`mobile-menu-link${c.sale ? ' sale' : ''}`}
-              onClick={() => setMenuOpen(false)}
-            >
+            <Link key={c.href} href={c.href} prefetch={false} className={`mobile-menu-link${c.sale ? ' sale' : ''}`} onClick={() => setMenuOpen(false)}>
               {c.label}
             </Link>
           ))}
@@ -292,7 +175,7 @@ export default function Navbar() {
             <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="mobile-menu-btn" style={{ background: '#25d366', color: '#fff' }}>
               WhatsApp Us
             </a>
-            <Link href="/branches" className="mobile-menu-btn" style={{ background: '#f4f4f4', color: '#0a0a0a' }} onClick={() => setMenuOpen(false)}>
+            <Link href="/branches" prefetch={false} className="mobile-menu-btn" style={{ background: '#f4f4f4', color: '#0a0a0a' }} onClick={() => setMenuOpen(false)}>
               <MapPin size={20} /> Find a Branch
             </Link>
           </div>

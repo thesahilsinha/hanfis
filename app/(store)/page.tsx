@@ -1,5 +1,4 @@
-export const revalidate = 0
-import { createAdminSupabase } from '@/lib/supabase-server'
+import { getHomeData } from '@/lib/cache'
 import Hero from '@/components/home/Hero'
 import CategoryPills from '@/components/home/CategoryPills'
 import ProductsGrid from '@/components/home/ProductsGrid'
@@ -10,41 +9,25 @@ import Newsletter from '@/components/home/Newsletter'
 import BlogSection from '@/components/home/BlogSection'
 import GallerySection from '@/components/home/GallerySection'
 
-export default async function HomePage() {
-  const supabase = createAdminSupabase()
-  const [
-    { data: featured },
-    { data: newArrivals },
-    { data: deals },
-    { data: accessories },
-    { data: branches },
-    { data: blogPosts },
-    { data: gallery },
-  ] = await Promise.all([
-    supabase.from('products').select('*').eq('in_stock', true).eq('featured', true).neq('category', 'Accessory').limit(8),
-    supabase.from('products').select('*').eq('in_stock', true).neq('category', 'Accessory').order('created_at', { ascending: false }).limit(8),
-    supabase.from('products').select('*').eq('in_stock', true).eq('badge', 'sale').neq('category', 'Accessory').limit(8),
-    supabase.from('products').select('*').eq('in_stock', true).eq('category', 'Accessory').eq('featured', true).limit(8),
-    supabase.from('branches').select('*').eq('is_active', true).limit(3),
-    supabase.from('blog_posts').select('*').eq('is_published', true).order('published_at', { ascending: false }).limit(3),
-    supabase.from('gallery_images').select('*').eq('is_active', true).order('sort_order').limit(9),
-  ])
+export const revalidate = 300
 
-  const featuredProducts = (featured && featured.length > 0) ? featured : (newArrivals || []).slice(0, 8)
-  const dealProducts = (deals && deals.length > 0) ? deals : (newArrivals || []).filter(p => p.old_price).slice(0, 8)
+export default async function HomePage() {
+  const d = await getHomeData()
+  const featured = d.featured.length ? d.featured : d.latest
+  const deals = d.deals.length ? d.deals : d.latest.filter((p: any) => p.old_price)
 
   return (
     <>
       <Hero />
       <CategoryPills />
-      <ProductsGrid title="Featured Phones" label="BEST SELLERS" products={featuredProducts} />
+      <ProductsGrid title="Featured Phones" label="BEST SELLERS" products={featured} />
       <BrandSection />
-      <ProductsGrid title="Latest Arrivals" label="NEW IN STORE" products={newArrivals || []} dark />
-      {dealProducts.length > 0 && <ProductsGrid title="Today's Deals" label="LIMITED TIME" products={dealProducts} />}
-      <FeaturedAccessories products={accessories || []} />
-      <BlogSection posts={blogPosts || []} />
-      <GallerySection images={gallery || []} />
-      <BranchesSection branches={branches || []} />
+      <ProductsGrid title="Latest Arrivals" label="NEW IN STORE" products={d.latest} dark />
+      {deals.length > 0 && <ProductsGrid title="Today's Deals" label="LIMITED TIME" products={deals} />}
+      <FeaturedAccessories products={d.accessories} />
+      <BlogSection posts={d.blog} />
+      <GallerySection images={d.gallery} />
+      <BranchesSection branches={d.branches} />
       <Newsletter />
     </>
   )
